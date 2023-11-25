@@ -1,5 +1,6 @@
 import React from 'react';
 import Cards from '../components/second/Cards';
+import './Home.css';
 
 const Home: React.FC = () => {
   return (

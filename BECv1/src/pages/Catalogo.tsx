@@ -1,6 +1,7 @@
 import React from 'react';
 import ConsultCatalogo from '../components/catalogo/Consultcatalogo';
 import Docfound from '../components/catalogo/Docfound';
+import './Catalogo.css';
 
 const CatalogoPage: React.FC = () => {
   return (

@@ -1,0 +1,30 @@
+.text-color {
+    color: #57412E;
+    font-weight: bold;
+    margin-top: 1em;
+}
+.nav-tabs .nav-link.active {
+    background-color: #A37B57;
+    color: #fff; /* Cambia el color del texto de las pestañas seleccionadas */
+}
+.btn-custom {
+    width: 100%; /* Establece el ancho deseado para los botones */
+    max-width: 200px; /* Establece el ancho máximo si lo deseas */
+}
+
+.btn-container {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.tabs-letter {
+    color: #fff;
+    font-weight: bold;
+    background: #F0D2B9;
+}
+
+.card.shadow-2-strong {
+    background-color: #F0D2B9;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
