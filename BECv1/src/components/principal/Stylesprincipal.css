@@ -1,0 +1,10 @@
+.subrayado {
+    text-decoration: none;
+}
+
+footer {
+    background-color: #a37b57;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
