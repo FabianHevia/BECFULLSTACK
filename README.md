@@ -2,7 +2,13 @@
 
 Codigo de BEC Full Stack
 
-Repositorio exclusivamente para Trabajo Universitario
+Repositorio exclusivamente para Trabajo Universitario, proyecto creado con Vite, para inciar un proyecto con Vite se hace de la siguiente manera:
+
+npm create vite@latest o en su defecto yarn create vite@latest
+se eligen las preferencias
+cd "nombre-de-tu-proyecto"
+npm install
+npm run dev
 
 Comprension de la estructura de Carpetas:
 
@@ -34,6 +40,14 @@ src/
 |-- App.tsx
 |-- index.css
 |-- main.tsx
+
+Recordamos encarecidamente instalar las dependencias a continuacion se adjuntan:
+
+dependencies": {
+    "bootstrap": "^5.3.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+}
 
 Anotaciones sobre uso de componentes:
 
