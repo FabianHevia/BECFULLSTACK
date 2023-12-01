@@ -8,7 +8,7 @@ interface LayoutInter {
   currentPage: string;
 }
 
-const Layout: React.FC<LayoutInter> = ({ children, handleNavigation, currentPage }) => {
+const Layout: React.FC<LayoutInter> = ({ children, handleNavigation }) => {
   return (
     <div style={{ background: 'linear-gradient(to top, #d9a7c7, #fffcdc)' }}>
       <header>
