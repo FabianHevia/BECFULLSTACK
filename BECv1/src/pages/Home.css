@@ -3,14 +3,13 @@
   text-align: center;
   margin-top: 1em;
   font-weight: bold; 
-
 }
 
 /* Establece un tamaño máximo para las imágenes en el carrusel */
 .carousel-img {
   max-width: 100%;
-  max-height: 800px;
-  min-height: 400px;
+  max-height: 600px;
+  min-height: 600px;
   background-size: cover;
   margin: 0 auto; /* Centra las imágenes horizontalmente */
 }

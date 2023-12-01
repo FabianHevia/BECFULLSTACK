@@ -1,8 +1,19 @@
-import React from 'react';
+import { Carousel } from '../../node_modules/bootstrap';
+import React, { useEffect } from 'react';
 import Cards from '../components/second/Cards';
 import './Home.css';
 
-const Home: React.FC = () => {
+const MyCarousel: React.FC = () => {
+  useEffect(() => {
+    const myCarousel = document.getElementById('demo');
+
+    if (myCarousel) {
+      const carousel = new Carousel(myCarousel, {
+        interval: 2000,
+      });
+    }
+  }, []);
+
   return (
     <div>
       <div id="demo" className="carousel slide" data-bs-ride="carousel">
@@ -37,10 +48,10 @@ const Home: React.FC = () => {
         </div>
 
         <button className="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-          <span className="carousel-control-prev-icon"></span>
+          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
         </button>
         <button className="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-          <span className="carousel-control-next-icon"></span>
+          <span className="carousel-control-next-icon" aria-hidden="true"></span>
         </button>
       </div>
 
@@ -48,21 +59,21 @@ const Home: React.FC = () => {
       <br />
       <div className="container">
         <div className="row">
-          <div className="col-md-4 mb-4 d-flex justify-content-center">
+          <div className="adjust col-md-4 mb-4 d-flex justify-content-center">
             <Cards
               link="https://www.loqueleo.com/mx/uploads/2018/07/resized/800_portada-un-libro-web.jpg"
               title="John Doe"
               information="Some example text some example text. John Doe is an architect and engineer"
             />
           </div>
-          <div className="col-md-4 mb-4 d-flex justify-content-center">
+          <div className="adjust col-md-4 mb-4 d-flex justify-content-center">
             <Cards
               link="https://www.loqueleo.com/mx/uploads/2018/07/resized/800_portada-un-libro-web.jpg"
               title="John Doe"
               information="Some example text some example text. John Doe is an architect and engineer"
             />
           </div>
-          <div className="col-md-4 mb-4 d-flex justify-content-center">
+          <div className="adjust col-md-4 mb-4 d-flex justify-content-center">
             <Cards
               link="https://www.loqueleo.com/mx/uploads/2018/07/resized/800_portada-un-libro-web.jpg"
               title="John Doe"
@@ -75,5 +86,14 @@ const Home: React.FC = () => {
     </div>
   );
 };
+
+const Home: React.FC = () => {
+  return (
+    <div>
+      <MyCarousel />
+    </div>
+  );
+};
+
 
 export default Home;
