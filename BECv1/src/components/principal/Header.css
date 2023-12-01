@@ -1,0 +1,33 @@
+.letra {
+    font-weight: 400;
+  }
+  #miNavbar {
+    transition: background-color 0.3s ease;
+    box-shadow: 1px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .navbar-scroll {
+    box-shadow: 1px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  img {
+    width: 12vh;
+    height: 8vh;
+  }
+
+  /* Cambiar el color del texto al pasar el cursor sobre un enlace */
+  .navbar-nav .nav-link:hover {
+    color: #007bff; /* Cambia el color a tu preferencia */
+    transition: color 0.3s ease; /* Agregar una transición suave */
+  }
+/* Estilos para dispositivos de escritorio */
+@media (min-width: 768px) {
+  .navbar-nav .nav-link:not(.fa-user) {
+    transition: transform 0.8s ease; /* Transición suave para el tamaño */
+  }
+
+  .navbar-nav .nav-link:not(.fa-user):hover {
+    transform: scale(1.18); /* Cambiar el tamaño a tu preferencia */
+    font-weight: 720; /* Eliminar el efecto de negrita */
+  }
+}

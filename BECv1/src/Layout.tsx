@@ -3,20 +3,22 @@ import Header from './components/principal/Header';
 import Footer from './components/principal/Footer';
 
 interface LayoutInter {
-  title?: string;
   children: React.ReactNode;
+  handleNavigation: (page: string) => void;
+  currentPage: string;
 }
 
-const Layout: React.FC<LayoutInter> = ({ children }) => {
+const Layout: React.FC<LayoutInter> = ({ children, handleNavigation, currentPage }) => {
   return (
-      <body style={{ background: 'linear-gradient(to top, #d9a7c7, #fffcdc)' }}>
-        {/* Similar a <Header />, <slot />, <Footer /> en Astro */}
-        <header><Header handleNavigation={(page: string) => {
-        window.location.href = `/${page}`;
-        }} /></header>
-        <main>{children}</main>
-        <footer><Footer /></footer>
-      </body>
+    <div style={{ background: 'linear-gradient(to top, #d9a7c7, #fffcdc)' }}>
+      <header>
+        <Header handleNavigation={handleNavigation} />
+      </header>
+      <main>{children}</main>
+      <footer>
+        <Footer />
+      </footer>
+    </div>
   );
 };
 

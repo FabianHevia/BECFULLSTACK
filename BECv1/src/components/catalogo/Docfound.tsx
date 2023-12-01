@@ -1,5 +1,5 @@
 import React from 'react';
-import '.Stylescatalogo.css';
+import './Stylescatalogo.css';
 
 const DocumentoEncontrado: React.FC = () => {
   return (

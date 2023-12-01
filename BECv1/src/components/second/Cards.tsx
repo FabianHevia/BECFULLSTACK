@@ -1,5 +1,5 @@
 import React from 'react';
-import '.Stylecards.css';
+import './Stylecards.css';
 
 interface CardAnimate {
   link?: string;

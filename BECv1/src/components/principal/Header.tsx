@@ -1,5 +1,6 @@
 import React from 'react';
-import './Stylesprincipal.css';
+import { NavLink } from 'react-router-dom';
+import './Header.css';
 
 interface HeaderInter {
     handleNavigation:(page: string) => void;
@@ -30,24 +31,24 @@ const Header: React.FC<HeaderInter> = ({ handleNavigation }) => {
         <div className="collapse navbar-collapse" id="navigation">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <a className="nav-link text-dark letra font-weight-bold d-flex align-items-center me-2" aria-current="page" href="/" onClick={() => handleNavigation('')}>Inicio</a>
+              <NavLink to="/" className="nav-link text-dark letra font-weight-bold d-flex align-items-center me-2" onClick={() => handleNavigation('Home')}>Inicio</NavLink>
             </li>
             <div className="dropdown">
               <li className="nav-item ">
-                <a className="nav-link text-dark letra font-weight-bold d-flex align-items-center me-2" data-bs-toggle="dropdown">Catalogo</a>
+                <NavLink to="/catalogo" className="nav-link text-dark letra font-weight-bold d-flex align-items-center me-2" onClick={() => handleNavigation('catalogo')}>Catalogo</NavLink>
                 <ul className="dropdown-menu ">
-                  <li><a className="dropdown-item" href="/catalogoUsuario" onClick={() => handleNavigation('catalogoUsuario')}>Usuario</a></li>
-                  <li><a className="dropdown-item" href="/catalogo" onClick={() => handleNavigation('catalogo')}>Empleado</a></li>
+                  <li><NavLink to="/catalogoUsuario" className="dropdown-item" onClick={() => handleNavigation('catalogoUsuario')}>Usuario</NavLink></li>
+                  <li><NavLink to="/catalogo" className="dropdown-item" onClick={() => handleNavigation('catalogo')}>Empleado</NavLink></li>
                 </ul>
               </li>
             </div>
             <li className="nav-item">
-              <a className="nav-link text-dark letra font-weight-bold d-flex align-items-center me-2" aria-current="page" href="/reservas" onClick={() => handleNavigation('reservas')}>Reserva</a>
+              <NavLink to="/reservas" className="nav-link text-dark letra font-weight-bold d-flex align-items-center me-2" onClick={() => handleNavigation('reservas')}>Reserva</NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/login" role="button">
+              <NavLink to="/login" className="nav-link" role="button">
                 <i className="fa fa-user" aria-hidden="true"></i>
-              </a>
+              </NavLink>
             </li>
           </ul>
         </div>
@@ -56,4 +57,3 @@ const Header: React.FC<HeaderInter> = ({ handleNavigation }) => {
   );
 };
 export default Header;
-

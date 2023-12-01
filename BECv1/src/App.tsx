@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Layout from './Layout.tsx';
 import Home from './pages/Home.tsx';
 import Catalogo from './pages/Catalogo.tsx';
@@ -7,38 +8,26 @@ import Login from './pages/Login.tsx';
 import Reservas from './pages/Reservas.tsx';
 
 const App: React.FC = () => {
-  const [pageTitle] = useState('BEC');
   const [currentPage, setCurrentPage] = useState('Home');
 
-  useEffect(() => {
-    document.title = pageTitle;
-  }, [pageTitle]);
-
-  const renderPage = () => {
-    switch (currentPage) {
-      case 'Home':
-        return <Home />;
-      case 'Catalogo':
-        return <Catalogo />;
-      case 'CatalogoUsuario':
-        return <CatalogoUsuario />;
-      case 'Login':
-        return <Login />;
-      case 'Reservas':
-        return <Reservas />;
-      default:
-        return <Home />;
-    }
+  const handleNavigation = (page: string) => {
+    setCurrentPage(page);
   };
 
-  // Resto del contenido de tu componente App
   return (
-    <div>
-      <h1>{pageTitle}</h1>
-      <Layout>
-        {renderPage()}
+    <Router>
+      <Layout handleNavigation={handleNavigation} currentPage={currentPage}>
+        <body>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/catalogo" element={<Catalogo />} />
+            <Route path="/catalogoUsuario" element={<CatalogoUsuario />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/reservas" element={<Reservas />} />
+          </Routes>
+        </body>
       </Layout>
-    </div>
+    </Router>
   );
 };
 
