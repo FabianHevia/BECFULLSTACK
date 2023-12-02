@@ -33,6 +33,10 @@ ReactDOM.render(
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         />
+        <link 
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" 
+          rel="stylesheet"
+        />
       </head>
       <body>
         <div id="root">
