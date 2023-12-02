@@ -33,9 +33,16 @@ const DocumentoEncontrado: React.FC = () => {
 
   return (
     <div>
-      <h2 className="text-color-cc ms-5">Búsqueda de documentos</h2>
-      <hr />
-      <DocumentStruct documents={documents} />
+        <h2 className="text-color-cc ms-5">Búsqueda de documentos
+        <img
+            src="/carrito-de-compras.png"
+            alt="Icono Carrito de Compras"
+            className="position-relative start-50 ms-5"
+            style={{ width: '50px', height: '48px'}}
+          />
+        </h2>
+        <hr />
+        <DocumentStruct documents={documents} />
     </div>
   );
 };
