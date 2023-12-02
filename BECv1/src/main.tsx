@@ -34,7 +34,7 @@ ReactDOM.render(
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         />
       </head>
-      <body style={{ background: 'linear-gradient(to top, #d9a7c7, #fffcdc)' }}>
+      <body>
         <div id="root">
           <App />
         </div>

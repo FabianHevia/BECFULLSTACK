@@ -17,7 +17,7 @@ const Cards: React.FC<CardAnimate> = ({
 
   return (
     <div className={cardClass}>
-      <img className="card-img-top" src={link} alt="Card image"/>
+      <img className="card-img-top card-img-top-s" src={link} alt="Card image"/>
       <div className="card-body">
         <h4 className="card-title">{title}</h4>
         <p className="card-text">{information}</p>

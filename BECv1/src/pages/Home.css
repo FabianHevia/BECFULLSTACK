@@ -13,3 +13,7 @@
   background-size: cover;
   margin: 0 auto; /* Centra las imágenes horizontalmente */
 }
+
+body{
+  background: linear-gradient(45deg, #ddbb93, #ddd8d3, #ddbb93);
+}

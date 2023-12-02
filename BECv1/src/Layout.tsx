@@ -6,15 +6,16 @@ interface LayoutInter {
   children: React.ReactNode;
   handleNavigation: (page: string) => void;
   currentPage: string;
+  background: string;
 }
 
-const Layout: React.FC<LayoutInter> = ({ children, handleNavigation }) => {
+const Layout: React.FC<LayoutInter> = ({ children, handleNavigation, currentPage, background }) => {
   return (
-    <div style={{ background: 'linear-gradient(to top, #d9a7c7, #fffcdc)' }}>
+    <div>
       <header>
         <Header handleNavigation={handleNavigation} />
       </header>
-      <main>{children}</main>
+      <main style={{ background }}>{children}</main>
       <footer>
         <Footer />
       </footer>

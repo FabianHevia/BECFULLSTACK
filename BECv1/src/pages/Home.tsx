@@ -40,7 +40,7 @@ const MyCarousel: React.FC = () => {
           </div>
           <div className="carousel-item">
             <img
-              src="https://www.rd.com/wp-content/uploads/sites/2/2016/10/impressive-libraries-Michigan-University-of-Michigan-Law-Library-.jpg"
+              src="https://st1.uvnimg.com/d2/83/1a0325a34c36a71e9ca82c0846f1/biblioteca-publica-de-nueva-york-500.000%20libros.jpg"
               alt="New York"
               className="d-block w-100 carousel-img"
             />
@@ -66,7 +66,7 @@ const MyCarousel: React.FC = () => {
               information="Some example text some example text. John Doe is an architect and engineer"
             />
           </div>
-          <div className="adjust col-md-4 mb-4 d-flex justify-content-center">
+          <div className="card-img-top-home adjust col-md-4 mb-4 d-flex justify-content-center">
             <Cards
               link="https://www.loqueleo.com/mx/uploads/2018/07/resized/800_portada-un-libro-web.jpg"
               title="John Doe"
@@ -94,6 +94,4 @@ const Home: React.FC = () => {
     </div>
   );
 };
-
-
 export default Home;
