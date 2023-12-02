@@ -1,5 +1,5 @@
 import React from 'react';
-import Docfound from '../components/catalogo/Docfound';
+import Docfound from '../components/catalogo/DocumentoEncontrado';
 import './Catalogo.css';
 
 const Usuario: React.FC = () => {

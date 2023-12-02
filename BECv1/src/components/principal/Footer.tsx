@@ -38,7 +38,7 @@ const Footer: React.FC = () => {
       </div>
       <div className="text-center p-3" style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
         © 2023 Copyright:
-        <a className="text-white subrayado" href="https://www.unab.cl/">BEC and UNAB</a>
+        <a className="text-white subrayado" href="https://www.unab.cl/"> BEC and UNAB</a>
       </div>
     </footer>
   );

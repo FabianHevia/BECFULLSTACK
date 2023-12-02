@@ -1,6 +1,6 @@
 import React from 'react';
 import ConsultCatalogo from '../components/catalogo/Consultcatalogo';
-import Docfound from '../components/catalogo/Docfound';
+import Docfound from '../components/catalogo/DocumentoEncontrado';
 import './Catalogo.css';
 
 const CatalogoPage: React.FC = () => {
@@ -12,20 +12,20 @@ const CatalogoPage: React.FC = () => {
           </div>
         </div>
 
-      <div className="container" style={{ marginBottom: '5vh' }}>
+      <div className="container" style={{ marginBottom: '50px' }}>
         <div className="row">
           <ul className="nav nav-tabs" id="myTabs" role="tablist">
             <li className="nav-item" role="presentation">
-              <a className="nav-link active tabs-letter" id="tab1-tab" data-bs-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="true">Consulta de catálogo</a>
+              <a className="nav-link active nav-tabs" id="tab1-tab" data-bs-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="true" style={{ backgroundColor: '#F0D2B9'}}>Consulta de catálogo</a>
             </li>
             <li className="nav-item" role="presentation">
-              <a className="nav-link tabs-letter" id="tab2-tab" data-bs-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="false">Documento encontrado</a>
+              <a className="nav-link" id="tab2-tab" data-bs-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="false" style={{ backgroundColor: '#A37B57'}}>Documento encontrado</a>
             </li>
           </ul>
         </div>
 
         <div className="row">
-          <div className="card shadow-2-strong" style={{ borderRadius: '1rem', backgroundColor: '#F0D2B9' }}>
+          <div className="card shadow-2-strong" style={{ borderRadius: '1vh', backgroundColor: '#F0D2B9' }}>
             <div className="tab-content" id="myTabsContent">
               <div className="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
                 <ConsultCatalogo />
@@ -35,14 +35,12 @@ const CatalogoPage: React.FC = () => {
               </div>
             </div>
             <hr />
-            <div className="mt-2 text-center">
+            <div className="mt-1 text-center">
               <div className="btn-container">
-                <button className="btn btn-primary btn-custom" style={{ backgroundColor: '#8B4513', borderColor: '#8B4513' }}>Volver</button>
+                <button className="btn btn-primary btn-custom me-4" style={{ backgroundColor: '#A37B57', borderColor: '#A37B57' }}>Volver</button>
+                <button className="btn btn-secondary btn-custom" style={{ backgroundColor: '#A37B57', borderColor: '#A37B57' }}>Aplicar Filtros</button>
               </div>
-              <div className="my-2"></div>
-              <div className="btn-container">
-                <button className="btn btn-secondary btn-custom" style={{ backgroundColor: '#8B4513', borderColor: '#8B4513' }}>Aplicar Filtros</button>
-              </div>
+              <div className="mb-2"></div>
             </div>
           </div>
         </div>

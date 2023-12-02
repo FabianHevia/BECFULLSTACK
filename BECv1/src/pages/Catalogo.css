@@ -28,3 +28,16 @@
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
 }
+
+.bg-color{
+    background: #F0D2B9;
+}
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-link.active:focus {
+    background-color: #F0D2B9 /* Color de fondo para el tab activo */
+  }
+  
+.nav-tabs .nav-link {
+    background-color: #c98f60; /* Color de fondo para los tabs inactivos */
+  }
