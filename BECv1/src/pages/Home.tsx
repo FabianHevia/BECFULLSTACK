@@ -1,6 +1,7 @@
 import { Carousel } from '../../node_modules/bootstrap';
 import React, { useEffect } from 'react';
 import Cards from '../components/second/Cards';
+import Noticias from '../components/second/Noticias';
 import './Home.css';
 
 const MyCarousel: React.FC = () => {
@@ -13,6 +14,20 @@ const MyCarousel: React.FC = () => {
       });
     }
   }, []);
+
+const noticias = [
+  {
+    titulo: 'Título de la noticia 1',
+    resumen: 'Resumen o párrafo de la noticia 1...',
+    fecha: '25 Nov 2023',
+  },
+  {
+    titulo: 'Título de la noticia 2',
+    resumen: 'Resumen o párrafo de la noticia 2...',
+    fecha: '24 Nov 2023',
+  },
+    // ... más noticias
+];
 
   return (
     <div>
@@ -83,6 +98,14 @@ const MyCarousel: React.FC = () => {
         </div>
       </div>
       <br />
+      <div>
+        <h1 className="mt-5 d-flex justify-content-center mx-auto noticiasTitle rounded-2" style= {{ backgroundColor: '#2f2321', maxWidth: '50.3%' }}>Noticias</h1>
+        <Noticias noticias={noticias} />
+      </div>
+      <div className="mb-5">
+        <div className="container mb-5" style={{ minHeight:'20px' }}>
+        </div>
+      </div>
     </div>
   );
 };

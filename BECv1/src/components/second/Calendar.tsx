@@ -19,7 +19,7 @@ const DropdownCalendario: React.FC = () => {
   return (
     <div className="dropdown">
       <button 
-        className="btn btn-secondary dropdown-toggle"
+        className="btn btn-secondary"
         type="button"
         id="dropdownCalendario"
         onClick={handleToggleCalendar}
