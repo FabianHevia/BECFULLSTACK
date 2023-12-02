@@ -37,8 +37,8 @@ const CatalogoPage: React.FC = () => {
             <hr />
             <div className="mt-1 text-center">
               <div className="btn-container">
-                <button className="btn btn-primary btn-custom me-4" style={{ backgroundColor: '#A37B57', borderColor: '#A37B57' }}>Volver</button>
-                <button className="btn btn-secondary btn-custom" style={{ backgroundColor: '#A37B57', borderColor: '#A37B57' }}>Aplicar Filtros</button>
+                <button className="btn btn-primary btn-custom me-xxl-4 me-xl-4 me-lg-4 me-md-4" style={{ backgroundColor: '#57412E', borderColor: '#57412E' }}>Volver</button>
+                <button className="btn btn-secondary btn-custom" style={{ backgroundColor: '#57412E', borderColor: '#57412E' }}>Aplicar Filtros</button>
               </div>
               <div className="mb-2"></div>
             </div>

@@ -4,7 +4,7 @@ import './Stylescatalogo.css';
 const ConsultaCatalogo: React.FC = () => {
   return (
     <div>
-      <h2 className="text-color-cc ms-2">Búsqueda de documentos</h2>
+      <h2 className="text-color-cc ms-5">Búsqueda de documentos</h2>
       <hr />
 
       <div className="row">
@@ -13,7 +13,7 @@ const ConsultaCatalogo: React.FC = () => {
             <div className="dropdown">
               <div className="ms-xxl-5 ms-xl-3 ms-lg-2 mb-xs-4">
                 <button
-                  className="btn btn-secondary dropdown-toggle text-secondary ms-md-5 mb-sm-4 position-relative start-50 translate-middle-x" style={{ backgroundColor: '#ffff', minWidth: '65%' }}
+                  className="btn btn-secondary btn-lg dropdown-toggle text-secondary ms-md-5 mb-sm-4 position-relative start-50 translate-middle-x form-control-lg" style={{ backgroundColor: '#ffff', minWidth: '65%' }}
                   type="button"
                   id="tipoDocumento"
                   data-bs-toggle="dropdown"
@@ -37,7 +37,7 @@ const ConsultaCatalogo: React.FC = () => {
               <div className="me-xxl-5 me-xl-4 me-lg-3 me-md-1">
               <div className="me-xxl-5 me-xl-5 me-lg-5 me-md-5">
                 <button
-                  className="btn btn-secondary dropdown-toggle text-secondary me-xxl-5 mt-xs-2 position-relative start-50 translate-middle-x" style={{ backgroundColor: '#ffff', minWidth: '65%' }}
+                  className="btn btn-secondary btn-lg dropdown-toggle text-secondary me-xxl-5 mt-xs-2 position-relative start-50 translate-middle-x form-control-lg" style={{ backgroundColor: '#ffff', minWidth: '65%' }}
                   type="button"
                   id="tipoDocumento"
                   data-bs-toggle="dropdown"
@@ -58,17 +58,17 @@ const ConsultaCatalogo: React.FC = () => {
         </div>
         <div className="col-md-12">
           <div className="form-group mb-3 mt-2 me-5 translate-middle-x position-relative start-50" style={{ maxWidth: '70%' }}>
-            <input type="text" className="form-control mt-4" id="titulo" placeholder="Título" />
+            <input type="text" className="form-control form-control-lg mt-4" id="titulo" placeholder="Título" />
           </div>
         </div>
         <div className="col-md-12">
           <div className="form-group mb-3 mt-2 me-5 translate-middle-x position-relative start-50" style={{ maxWidth: '70%'}}>
-            <input type="text" className="form-control" id="autor" placeholder="Autor" />
+            <input type="text" className="form-control form-control-lg" id="autor" placeholder="Autor" />
           </div>
         </div>
         <div className="col-md-12">
           <div className="form-group mb-3 mt-2 me-5 translate-middle-x position-relative start-50" style={{ maxWidth: '70%' }}>
-            <input type="text" className="form-control" id="tema" placeholder="Tema" />
+            <input type="text" className="form-control form-control-lg" id="tema" placeholder="Tema" />
           </div>
         </div>
       </div>

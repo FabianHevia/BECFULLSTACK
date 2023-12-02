@@ -1,0 +1,10 @@
+.horizontal-line {
+    border-top: 1px solid #000; /* Línea horizontal */
+    margin: 20px 0; /* Márgenes superior e inferior */
+    box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.5); /* Sombras para efecto */
+  }
+
+.bold-text {
+    color: #57412E;
+    font-weight: bold;
+}
