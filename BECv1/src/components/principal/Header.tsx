@@ -8,7 +8,7 @@ interface HeaderInter {
 
 const Header: React.FC<HeaderInter> = ({ handleNavigation }) => {
   return (
-    <nav className="navbar navbar-expand-lg blur border-radius-sm top-0 z-index-3 shadow sticky-top py-0.5 start-0 end-0" id="miNavbar">
+      <nav className="navbar navbar-expand-lg blur border-radius-sm top-0 z-index-3 shadow sticky-top py-0.5 start-0 end-0" id="miNavbar" style={{ background: '#ffffff' }}>
       <div className="container px-1">
         <a href="/">
           <img className="imagen-responsive" src="Logo.png" alt="Logo" />
