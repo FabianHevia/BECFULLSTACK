@@ -1,7 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Stylescatalogo.css';
+import axios from 'axios';
 
 const ConsultaCatalogo: React.FC = () => {
+  const [tipoDocumento, setTipoDocumento] = useState('');
+  const [categoria, setCategoria] = useState('');
+
+
+    const getDocumentos = async () => {
+      try {
+        const response = await axios.post('http://localhost:3000/graphql', {
+          query: `
+            query {
+              documentos {
+                _id
+                tipoDocumento
+                categoria
+                titulo
+                autor
+                tema
+              }
+            }
+          `
+        });
+
+        console.log('Documentos:', response.data.data.documentos);
+      } catch (error) {
+        console.error('Error al obtener documentos:', error);
+      }
+    };
+
+      // Función para manejar la consulta cuando se selecciona un tipo de documento
+  const handleTipoDocumentoChange = (value: string) => {
+    setTipoDocumento(value);
+    // Aquí podrías realizar la consulta GraphQL con el nuevo tipo de documento seleccionado
+    getDocumentos();
+  };
+
+  // Función para manejar la consulta cuando se selecciona una categoría
+  const handleCategoriaChange = (value: string) => {
+    setCategoria(value);
+    // Aquí podrías realizar la consulta GraphQL con la nueva categoría seleccionada
+    getDocumentos();
+  };
+
   return (
     <div>
       <h2 className="text-color-cc ms-5">Búsqueda de documentos</h2>
