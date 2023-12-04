@@ -1,12 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import './Stylescatalogo.css';
 import axios from 'axios';
 
 const ConsultaCatalogo: React.FC = () => {
-  const [tipoDocumento, setTipoDocumento] = useState('');
-  const [categoria, setCategoria] = useState('');
-
-
+  useEffect(() => {
     const getDocumentos = async () => {
       try {
         const response = await axios.post('http://localhost:3000/graphql', {
@@ -30,19 +27,8 @@ const ConsultaCatalogo: React.FC = () => {
       }
     };
 
-      // Función para manejar la consulta cuando se selecciona un tipo de documento
-  const handleTipoDocumentoChange = (value: string) => {
-    setTipoDocumento(value);
-    // Aquí podrías realizar la consulta GraphQL con el nuevo tipo de documento seleccionado
     getDocumentos();
-  };
-
-  // Función para manejar la consulta cuando se selecciona una categoría
-  const handleCategoriaChange = (value: string) => {
-    setCategoria(value);
-    // Aquí podrías realizar la consulta GraphQL con la nueva categoría seleccionada
-    getDocumentos();
-  };
+  }, []);
 
   return (
     <div>
@@ -117,5 +103,4 @@ const ConsultaCatalogo: React.FC = () => {
     </div>
   );
 };
-
 export default ConsultaCatalogo;
