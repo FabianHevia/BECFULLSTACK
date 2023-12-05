@@ -5,8 +5,10 @@ const DocumentoEncontrado: React.FC = () => {
   const [filteredDocuments, setFilteredDocuments] = useState([]); // Estado para almacenar documentos filtrados
   const [selectedCategory, setSelectedCategory] = useState(''); // Estado para la categoría seleccionada
   const [selectedAuthor, setSelectedAuthor] = useState(''); // Estado para el autor seleccionado
+  const [selectedTitulo, setSelectedTitulo] = useState(''); // Estado para el titulo seleccionado
   const [selectedType, setSelectedType] = useState(''); // Estado para el tipo de libro seleccionado
   const [authorInput, setAuthorInput] = useState(''); // Estado para almacenar el autor ingresado por el usuario
+  const [tituloInput, setTituloInput] = useState(''); // Estado para almacenar el titulo ingresado por el usuario
 
 
 
@@ -343,6 +345,12 @@ const DocumentoEncontrado: React.FC = () => {
     } else if (authorInput) { // Filtrar por el autor ingresado por el usuario si está presente
       filtered = filtered.filter(doc => doc.author.toLowerCase().includes(authorInput.toLowerCase()));
     }
+    // Filtrar por titulo si se ha seleccionado uno
+    if (selectedTitulo) {
+      filtered = filtered.filter(doc => doc.title === selectedTitulo);
+    } else if (tituloInput) { // Filtrar por el titulo ingresado por el usuario si está presente
+      filtered = filtered.filter(doc => doc.title.toLowerCase().includes(tituloInput.toLowerCase()));
+    }
 
     // Filtrar por tipo de libro si se ha seleccionado uno
     if (selectedType) {
@@ -385,6 +393,7 @@ const DocumentoEncontrado: React.FC = () => {
         {/* Ejemplo: */}
         <option value="Libro Técnico">Libro Técnico</option>
         <option value="Libro Teórico">Libro Teórico</option>
+        <option value="Novela">Novela</option>
         {/* ... Otras opciones ... */}
       </select>
 
@@ -394,6 +403,13 @@ const DocumentoEncontrado: React.FC = () => {
         placeholder="Ingrese el autor"
         value={authorInput}
         onChange={(e) => setAuthorInput(e.target.value)}
+      />
+      {/* Campo de texto para que el usuario ingrese el titulo */}
+      <input
+        type="text"
+        placeholder="Ingrese el titulo"
+        value={tituloInput}
+        onChange={(e) => setTituloInput(e.target.value)}
       />
 
       {/* Mostrar la lista de documentos filtrados o mensaje si no hay coincidencias */}
