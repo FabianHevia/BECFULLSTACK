@@ -1,19 +1,19 @@
-# BECFULLSTACK
+# BEC FULLSTACK
 
-Codigo de BEC Full Stack
+Este repositorio ha sido creado por los siguientes miembros:
 
-Repositorio exclusivamente para Trabajo Universitario, proyecto creado con Vite, para inciar un proyecto con Vite se hace de la siguiente manera:
+* Fabian Hevia (MVP)
+* Aaron Ortiz (El señorito)
+* Christopher Chavez (El punta de lanza)
+* Nicolas Valdivia (El que no tiene ningun pelo de tonto)
+* Victor Camero (Un venezolano que sufre de malnutricion ya que no puedo comer)
+* Dante Felipe Tapia Vera, estudiante de la UNAB, miembro del colectivo LGQBT+ (Pitufo gruñon).
 
-npm create vite@latest o en su defecto yarn create vite@latest
-se eligen las preferencias
-cd "nombre-de-tu-proyecto"
-npm install
-npm run dev
 
 Comprension de la estructura de Carpetas:
 
 Estructura de Carpetas
-
+```
 src/
 |-- components/
 |   |-- catalogo/
@@ -41,6 +41,8 @@ src/
 |-- index.css
 |-- main.tsx
 
+```
+
 Recordamos encarecidamente instalar las dependencias a continuacion se adjuntan:
 
 dependencies": {
@@ -51,8 +53,9 @@ dependencies": {
 
 Anotaciones sobre uso de componentes:
 
->> Layout anotation <<
+> Layout anotation 
 
+```js
 import React from 'react';
 import Layout from './Layout';
 
@@ -69,11 +72,12 @@ const App: React.FC = () => {
 };
 
 export default App;
+```
 
 De esta manera, puedes pasar cualquier contenido dentro del componente Layout como hijos y se renderizarán en el lugar donde se encuentra {children} dentro de la definición del layout.
 
->> Cards anotation <<
-
+> Cards anotation 
+```js
 import React from 'react';
 import AstroCard from './AstroCard';
 
@@ -102,7 +106,62 @@ const App: React.FC = () => {
     </div>
   );
 };
-
 export default App;
+```
 
 Proyecto con logica dinamica de Layout para diseños de Front End (no recomenadable).
+
+
+
+# React + TypeScript + Vite
+
+Este template nos permite configuar React con Vite con HMR  y ESLint.
+
+Trabajaremos con los siguientes pluggins:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) usa [Babel](https://babeljs.io/) para un renderisado mas rapido
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) usa [SWC](https://swc.rs/) para un mejor renderisado
+
+## Descarga del proyecto
+
+Hemos de definir en primer lugar donde deseamos descargar todo el proyecto en la terminal para luego usar el siguiente comando: 
+
+```shell
+git clone "https://github.com/FabianHevia/BECFULLSTACK.git"
+```
+
+Con esto ahora solo nos quedara utilizar los comandos `npm`.
+
+## Ejecucion y preparacion del entorno de desarrollo
+
+Lista de comandos que se han de utilizar para hacer las intalaciones iniciales y ejecutar todo el proyecto: 
+
+| Comandos                  |Acciones                                          |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Instalacion de dependencias                      |
+| `npm run dev`             | Instalacion del entorno de desarrollaro e inicializa en `localhost:5173`      |
+
+
+## Ampliando la configuración de ESLint
+
+Si se va a trabajar la aplicacion en un entorno de produccion, se recomiendoa activar los siguientes cambios: 
+
+- Configurar la propiedad `parserOptions` de la siguiente manera:
+
+```js
+export default {
+  // other rules...
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
+    tsconfigRootDir: __dirname,
+  },
+}
+```
+
+- Remplazamos `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
+- Es opcional agregar `plugin:@typescript-eslint/stylistic-type-checked`
+- Instalar [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) y agregar `plugin:react/recommended` & `plugin:react/jsx-runtime` a la `extends` de la lista
+
+**Nota:** Con todo esto ya tendremos todo el `Front-end`.
