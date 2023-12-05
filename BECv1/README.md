@@ -1,17 +1,37 @@
 # React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este template nos permite configuar React con Vite con HMR  y ESLint.
 
-Currently, two official plugins are available:
+Trabajaremos con los siguientes pluggins:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) usa [Babel](https://babeljs.io/) para un renderisado mas rapido
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) usa [SWC](https://swc.rs/) para un mejor renderisado
 
-## Expanding the ESLint configuration
+## Descarga del proyecto
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Hemos de definir en primer lugar donde deseamos descargar todo el proyecto en la terminal para luego usar el siguiente comando: 
 
-- Configure the top-level `parserOptions` property like this:
+```shell
+git clone "https://github.com/FabianHevia/BECFULLSTACK.git"
+```
+
+Con esto ahora solo nos quedara utilizar los comandos `npm`.
+
+## Ejecucion y preparacion del entorno de desarrollo
+
+Lista de comandos que se han de utilizar para hacer las intalaciones iniciales y ejecutar todo el proyecto: 
+
+| Comandos                  |Acciones                                          |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Instalacion de dependencias                      |
+| `npm run dev`             | Instalacion del entorno de desarrollaro e inicializa en `localhost:5173`      |
+
+
+## Ampliando la configuración de ESLint
+
+Si se va a trabajar la aplicacion en un entorno de produccion, se recomiendoa activar los siguientes cambios: 
+
+- Configurar la propiedad `parserOptions` de la siguiente manera:
 
 ```js
 export default {
@@ -25,6 +45,8 @@ export default {
 }
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- Remplazamos `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
+- Es opcional agregar `plugin:@typescript-eslint/stylistic-type-checked`
+- Instalar [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) y agregar `plugin:react/recommended` & `plugin:react/jsx-runtime` a la `extends` de la lista
+
+**Nota:** Con todo esto ya tendremos todo el `Front-end`.
