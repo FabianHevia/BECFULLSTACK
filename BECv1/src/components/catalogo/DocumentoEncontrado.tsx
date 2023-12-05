@@ -11,32 +11,322 @@ const DocumentoEncontrado: React.FC = () => {
 
 
   const documents = [
-    {
-      title: 'Ingeniería de Software',
-      author: 'Martin Miranda',
-      type: 'Libro Técnico',
-      category: 'Ingeniería Informática',
-    },
-    {
-      title: 'Ingeniería de Software',
-      author: 'Christian Carrasco',
-      type: 'Libro Técnico',
-      category: 'Ingeniería Informática',
-    },
-    {
-      title: 'Ingeniería Civil Informática',
-      author: 'Gabriel Carrasco',
-      type: 'Libro Teórico',
-      category: 'Ingeniería Informática',
-    },
-    {
-      title: 'Ingeniería Civil Informática',
-      author: 'Gabriel Carrasco',
-      type: 'Libro Teórico',
-      category: 'Ingeniería Informática',
-    },
-    // Agrega más elementos si es necesario
-  ];
+    // Ciencia Ficción
+  {
+    title: 'Viaje a las Estrellas',
+    author: 'Alicia Novak',
+    type: 'Novela',
+    category: 'Ciencia Ficción',
+  },
+  {
+    title: 'Máquinas del Futuro',
+    author: 'Carlos Galáctico',
+    type: 'Libro Técnico',
+    category: 'Ciencia Ficción',
+  },
+  {
+    title: 'La Última Frontera',
+    author: 'David Estelar',
+    type: 'Novela',
+    category: 'Ciencia Ficción',
+  },
+  {
+    title: 'El Último Exoplaneta',
+    author: 'Marta Galáctica',
+    type: 'Novela',
+    category: 'Ciencia Ficción',
+  },
+  {
+    title: 'Realidad Virtual',
+    author: 'Hugo Espacial',
+    type: 'Libro Técnico',
+    category: 'Ciencia Ficción',
+  },
+  {
+    title: 'La Rebelión de las Máquinas',
+    author: 'Eva Robótica',
+    type: 'Novela',
+    category: 'Ciencia Ficción',
+  },
+  {
+    title: 'Aventuras Temporales',
+    author: 'Diego Crononauta',
+    type: 'Novela',
+    category: 'Ciencia Ficción',
+  },
+  {
+    title: 'Hijos de las Estrellas',
+    author: 'Isabel Astro',
+    type: 'Novela',
+    category: 'Ciencia Ficción',
+  },
+  {
+    title: 'Exploradores del Cosmos',
+    author: 'Natalia Espacial',
+    type: 'Novela',
+    category: 'Ciencia Ficción',
+  },
+  {
+    title: 'Inteligencia Artificial Despierta',
+    author: 'Roberto Cibernético',
+    type: 'Libro Técnico',
+    category: 'Ciencia Ficción',
+  },
+  {
+    title: 'El Portal Dimensional',
+    author: 'Lorena Cuántica',
+    type: 'Novela',
+    category: 'Ciencia Ficción',
+  },
+  {
+    title: 'Revolución Robótica',
+    author: 'Alejandro Máquina',
+    type: 'Novela',
+    category: 'Ciencia Ficción',
+  },
+  {
+    title: 'Aventuras Intergalácticas',
+    author: 'Carmen Astro',
+    type: 'Novela',
+    category: 'Ciencia Ficción',
+  },
+  // Drama
+  {
+    title: 'Caminos Cruzados',
+    author: 'Elena Drama',
+    type: 'Novela',
+    category: 'Drama',
+  },
+  {
+    title: 'Secretos Familiares',
+    author: 'Juan Tragedia',
+    type: 'Novela',
+    category: 'Drama',
+  },
+  {
+    title: 'Entre Luces y Sombras',
+    author: 'María Drama',
+    type: 'Novela',
+    category: 'Drama',
+  },
+  {
+    title: 'Destinos Entrelazados',
+    author: 'Carla Emociones',
+    type: 'Novela',
+    category: 'Drama',
+  },
+  {
+    title: 'Vidas Rotas',
+    author: 'Javier Tragedia',
+    type: 'Novela',
+    category: 'Drama',
+  },
+  {
+    title: 'Entre el Amor y el Odio',
+    author: 'Sofía Intensa',
+    type: 'Novela',
+    category: 'Drama',
+  },
+  {
+    title: 'Decisiones Difíciles',
+    author: 'Raúl Conflictivo',
+    type: 'Novela',
+    category: 'Drama',
+  },
+  {
+    title: 'Lágrimas en el Crepúsculo',
+    author: 'Luisa Melancolía',
+    type: 'Novela',
+    category: 'Drama',
+  },
+  {
+    title: 'Pasiones Ocultas',
+    author: 'Rodrigo Sentimientos',
+    type: 'Novela',
+    category: 'Drama',
+  },
+  {
+    title: 'Secretos del Pasado',
+    author: 'Laura Trágica',
+    type: 'Novela',
+    category: 'Drama',
+  },
+  {
+    title: 'Amores Prohibidos',
+    author: 'Julián Romántico',
+    type: 'Novela',
+    category: 'Drama',
+  },
+  {
+    title: 'Destinos Rotos',
+    author: 'Silvia Desgarradora',
+    type: 'Novela',
+    category: 'Drama',
+  },
+  {
+    title: 'Melodía del Corazón',
+    author: 'Eduardo Emotivo',
+    type: 'Novela',
+    category: 'Drama',
+  },
+  // Ficción
+  {
+    title: 'Mundos Imaginarios',
+    author: 'Fernando Fantasía',
+    type: 'Novela',
+    category: 'Ficción',
+  },
+  {
+    title: 'Realidades Alteradas',
+    author: 'Laura Imaginaria',
+    type: 'Novela',
+    category: 'Ficción',
+  },
+  {
+    title: 'Historias Inventadas',
+    author: 'Pedro Ficción',
+    type: 'Novela',
+    category: 'Ficción',
+  },
+  {
+    title: 'El Jardín de las Ideas',
+    author: 'Gabriel Creativo',
+    type: 'Novela',
+    category: 'Ficción',
+  },
+  {
+    title: 'Mundos Paralelos',
+    author: 'Verónica Imaginaria',
+    type: 'Novela',
+    category: 'Ficción',
+  },
+  {
+    title: 'Historias Inexploradas',
+    author: 'Pablo Soñador',
+    type: 'Novela',
+    category: 'Ficción',
+  },
+  {
+    title: 'El Libro de los Sueños',
+    author: 'Valentina Fantástica',
+    type: 'Novela',
+    category: 'Ficción',
+  },
+  {
+    title: 'Realidades Alternativas',
+    author: 'Mario Ilusión',
+    type: 'Novela',
+    category: 'Ficción',
+  },
+  {
+    title: 'El Sueño del Inventor',
+    author: 'Isabella Inventora',
+    type: 'Novela',
+    category: 'Ficción',
+  },
+  {
+    title: 'Imágenes Fantásticas',
+    author: 'Gabriel Soñador',
+    type: 'Novela',
+    category: 'Ficción',
+  },
+  {
+    title: 'Aventuras Inexploradas',
+    author: 'Natalia Imaginaria',
+    type: 'Novela',
+    category: 'Ficción',
+  },
+  {
+    title: 'El Libro de las Maravillas',
+    author: 'Francisco Fantástico',
+    type: 'Novela',
+    category: 'Ficción',
+  },
+  {
+    title: 'Mundos Paralelos',
+    author: 'Luna Ilusión',
+    type: 'Novela',
+    category: 'Ficción',
+  },
+  // Ingeniería Informática
+  {
+    title: 'Algoritmos Avanzados',
+    author: 'Martín Ingeniero',
+    type: 'Libro Técnico',
+    category: 'Ingeniería Informática',
+  },
+  {
+    title: 'Redes y Comunicaciones',
+    author: 'Ana Coder',
+    type: 'Libro Técnico',
+    category: 'Ingeniería Informática',
+  },
+  {
+    title: 'Desarrollo Web Moderno',
+    author: 'Luis Programador',
+    type: 'Libro Técnico',
+    category: 'Ingeniería Informática',
+  },
+  {
+    title: 'Introducción a la Inteligencia Artificial',
+    author: 'Ana Científica',
+    type: 'Libro Técnico',
+    category: 'Ingeniería Informática',
+  },
+  {
+    title: 'Seguridad en Sistemas Informáticos',
+    author: 'Luis Hacker',
+    type: 'Libro Técnico',
+    category: 'Ingeniería Informática',
+  },
+  {
+    title: 'Desarrollo Ágil de Software',
+    author: 'María Ágil',
+    type: 'Libro Técnico',
+    category: 'Ingeniería Informática',
+  },
+  {
+    title: 'Redes Neuronales Profundas',
+    author: 'Javier Redes',
+    type: 'Libro Técnico',
+    category: 'Ingeniería Informática',
+  },
+  {
+    title: 'Programación Orientada a Objetos',
+    author: 'Carlos Programador',
+    type: 'Libro Técnico',
+    category: 'Ingeniería Informática',
+  },
+  {
+    title: 'Desarrollo Web Avanzado',
+    author: 'Mario Desarrollador',
+    type: 'Libro Técnico',
+    category: 'Ingeniería Informática',
+  },
+  {
+    title: 'Ciberseguridad para Principiantes',
+    author: 'Ana Cibersegura',
+    type: 'Libro Técnico',
+    category: 'Ingeniería Informática',
+  },
+  {
+    title: 'Introducción a la Computación Cuántica',
+    author: 'Elena Cuántica',
+    type: 'Libro Técnico',
+    category: 'Ingeniería Informática',
+  },
+  {
+    title: 'Optimización de Bases de Datos',
+    author: 'Carlos DBA',
+    type: 'Libro Técnico',
+    category: 'Ingeniería Informática',
+  },
+  {
+    title: 'Programación Funcional',
+    author: 'Laura Funcional',
+    type: 'Libro Técnico',
+    category: 'Ingeniería Informática',
+  }];
 
   // Función para aplicar los filtros
   const applyFilters = () => {
