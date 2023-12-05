@@ -9,7 +9,7 @@ const title = 'BEC';
 const metaTags = (
   <React.StrictMode>
     <meta charSet="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="%PUBLIC_URL%/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="%PUBLIC_URL%/favicon.png" />
     {/* Otras etiquetas meta que desees incluir */}
   </React.StrictMode>
 );
