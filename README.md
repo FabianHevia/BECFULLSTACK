@@ -4,7 +4,7 @@ Este repositorio ha sido creado por los siguientes miembros:
 
 * Fabian Hevia (MVP)
 * Aaron Ortiz (El señorito)
-* Christopher Chavez (El punta de lanza)
+* Christopher Chávez (El punta de lanza)
 * Nicolas Valdivia (El que no tiene ningun pelo de tonto)
 * Victor Camero (El muerto de hambre)
 * Dante Felipe Tapia Vera, estudiante de la UNAB, miembro del colectivo LGQBT+ (Pitufo gruñon).
