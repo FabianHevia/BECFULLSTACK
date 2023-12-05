@@ -2,21 +2,18 @@
     font-size: 1.77rem;
     text-align: center;
     color: '#2f2321';
-    margin-left: -6%;
   }
   
 .resumen {
     text-align: center;
-    margin-left: -6%;
     color: '#2f2321';
   }
   
 .fecha {
     text-align: center;
-    color: white;
     font-style: italic;
     font-weight: bold;
-    font-size: 25px;
+    font-size: 30px;
   }
   .animated {
     transition: transform 0.3s;
