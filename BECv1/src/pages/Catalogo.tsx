@@ -1,5 +1,6 @@
 import React from 'react';
 import Docfound from '../components/catalogo/DocumentoEncontrado';
+import Slider from '../components/second/Slider';
 import './Catalogo.css';
 
 const CatalogoPage: React.FC = () => {
@@ -15,7 +16,7 @@ const CatalogoPage: React.FC = () => {
         <div className="row">
           <ul className="nav nav-tabs" id="myTabs" role="tablist">
             <li className="nav-item" role="presentation">
-              <a className="nav-link active nav-tabs" id="tab1-tab" data-bs-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="false" style={{ backgroundColor: '#F0D2B9'}}>Documento encontrado</a>
+              <a className="nav-link active nav-tabs" id="tab1-tab" data-bs-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="false" style={{ backgroundColor: '#F0D2B9'}}>Buscar Documento</a>
             </li>
           </ul>
         </div>
@@ -27,8 +28,11 @@ const CatalogoPage: React.FC = () => {
               </div>
             </div>
             <hr />
-      
           </div>
+          <div className="col-12 mt-5 mb-5">
+            <h1 className="text-color">Catalogo</h1>
+            <Slider />
+        </div>
         </div>
       </div>
       <br />

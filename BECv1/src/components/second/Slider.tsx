@@ -20,30 +20,45 @@ const Card = ({ imageURL, altText }: { imageURL: string; altText: string }) => {
 };
 
 const Slider: React.FC = () => {
+  const handlePrevButtonClick = () => {
+    const cardsWrapper = document.querySelector<HTMLElement>('.cards-wrapper');
+    if (cardsWrapper) {
+      const scrollSpeed = 8; // Velocidad de desplazamiento
+      const delay = 10; // Retraso entre cada cambio de posición
+
+      const scroll = () => {
+        const remainingScroll = Math.max(cardsWrapper.scrollLeft - scrollSpeed, 0);
+        cardsWrapper.scrollLeft = remainingScroll;
+
+        if (remainingScroll > 0) {
+          setTimeout(scroll, delay);
+        }
+      };
+
+      scroll();
+    }
+  };
+
+  const handleNextButtonClick = () => {
+    const cardsWrapper = document.querySelector<HTMLElement>('.cards-wrapper');
+    if (cardsWrapper) {
+      const scrollSpeed = 8; // Velocidad de desplazamiento
+      const delay = 10; // Retraso entre cada cambio de posición
+
+      const scroll = () => {
+        const remainingScroll = Math.min(cardsWrapper.scrollLeft + scrollSpeed, cardsWrapper.scrollWidth - cardsWrapper.clientWidth);
+        cardsWrapper.scrollLeft = remainingScroll;
+
+        if (remainingScroll < cardsWrapper.scrollWidth - cardsWrapper.clientWidth) {
+          setTimeout(scroll, delay);
+        }
+      };
+
+      scroll();
+    }
+  };
+
   useEffect(() => {
-    const handleWheel = (event: WheelEvent) => {
-      const cardsWrapper = document.querySelector<HTMLElement>('.cards-wrapper');
-      if (cardsWrapper && event.deltaY !== 0) {
-        event.preventDefault();
-        cardsWrapper.scrollLeft += event.deltaY;
-      }
-    };
-
-    const handlePrevButtonClick = () => {
-      const cardsWrapper = document.querySelector<HTMLElement>('.cards-wrapper');
-      if (cardsWrapper) {
-        cardsWrapper.scrollLeft -= 100;
-      }
-    };
-
-    const handleNextButtonClick = () => {
-      const cardsWrapper = document.querySelector<HTMLElement>('.cards-wrapper');
-      if (cardsWrapper) {
-        cardsWrapper.scrollLeft += 100;
-      }
-    };
-
-    document.addEventListener('wheel', handleWheel);
     const prevButton = document.querySelector<HTMLElement>('.carousel-control-prev');
     const nextButton = document.querySelector<HTMLElement>('.carousel-control-next');
 
@@ -53,7 +68,6 @@ const Slider: React.FC = () => {
     }
 
     return () => {
-      document.removeEventListener('wheel', handleWheel);
       if (prevButton && nextButton) {
         prevButton.removeEventListener('click', handlePrevButtonClick);
         nextButton.removeEventListener('click', handleNextButtonClick);
@@ -71,9 +85,12 @@ const Slider: React.FC = () => {
       <div className="carousel-inner">
         <div className="carousel-item active">
           <div className="cards-wrapper">
-            <Card imageURL="URL_IMAGEN_1" altText="Descripción de la imagen 1" />
-            <Card imageURL="URL_IMAGEN_2" altText="Descripción de la imagen 2" />
-            <Card imageURL="URL_IMAGEN_3" altText="Descripción de la imagen 3" />
+            <Card imageURL="CuentosDeOtono.webp" altText="Descripción de la imagen 1" />
+            <Card imageURL="Elzorro.webp" altText="Descripción de la imagen 2" />
+            <Card imageURL="MatarAunRuisenor.webp" altText="Descripción de la imagen 3" />
+            <Card imageURL="CuentosDeOtono.webp" altText="Descripción de la imagen 1" />
+            <Card imageURL="Elzorro.webp" altText="Descripción de la imagen 2" />
+            <Card imageURL="MatarAunRuisenor.webp" altText="Descripción de la imagen 3" />
           </div>
         </div>
       </div>

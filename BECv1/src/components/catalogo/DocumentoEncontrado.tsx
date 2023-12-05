@@ -440,7 +440,7 @@ const DocumentoEncontrado: React.FC = () => {
       <select
         value={selectedCategory}
         onChange={(e) => setSelectedCategory(e.target.value)}
-        className="d-flex mx-auto mt-3"
+        className="position relative mt-3 select-css"
       >
         {/* Opciones de categoría */}
         <option value="">Todas las categorías</option>
@@ -456,7 +456,7 @@ const DocumentoEncontrado: React.FC = () => {
       <select
         value={selectedType}
         onChange={(e) => setSelectedType(e.target.value)}
-        className="d-flex mx-auto mt-3"
+        className="position relative mt-3 select-css"
       >
         {/* Opciones de tipo de libro */}
         <option value="">Todos los tipos</option>
