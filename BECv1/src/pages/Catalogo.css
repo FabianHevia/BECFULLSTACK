@@ -40,4 +40,10 @@
   
 .nav-tabs .nav-link {
     background-color: #c98f60; /* Color de fondo para los tabs inactivos */
+
   }
+
+.animation:hover{
+    transform: scale(1.03);
+
+}

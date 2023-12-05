@@ -492,4 +492,3 @@ const DocumentoEncontrado: React.FC = () => {
 };
 
 export default DocumentoEncontrado;
-
