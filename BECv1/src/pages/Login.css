@@ -2,3 +2,13 @@
     color: #57412E;
     font-weight: bold;
 }
+
+.animated-login {
+    transition: transform 0.6s;
+    height:50%;
+    width: 350px;
+  }
+  
+.animated-login:hover {
+    transform: scale(1.04); 
+  }

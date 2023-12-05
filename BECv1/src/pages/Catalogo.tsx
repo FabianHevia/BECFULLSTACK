@@ -20,7 +20,7 @@ const CatalogoPage: React.FC = () => {
           </ul>
         </div>
         <div className="row">
-          <div className="card shadow-2-strong" style={{ borderRadius: '1vh', backgroundColor: '#F0D2B9' }}>
+          <div className="animated-catalogo shadow-2-strong" style={{ borderRadius: '1vh', backgroundColor: '#F0D2B9' }}>
             <div className="tab-content" id="myTabsContent">
               <div className="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
                 <Docfound />

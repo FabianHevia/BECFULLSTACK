@@ -35,6 +35,7 @@
   width:12%;
   height:12%;
   margin-top: -3%;
+  transition: transform 0.3s;
 }
 .buhogod:hover{
   transform: scale(1.04)

@@ -70,7 +70,7 @@ const noticias = [
         </button>
       </div>
       <br />
-      <div className="container mt-5 rounded-5 fondo-home-1">
+      <div className="container mt-5 rounded-5 fondo-home-1 border border-black">
       <br />
         <h2 className="titleCards mt-5 mb-5">Destacados</h2>
         <div className="row">
@@ -123,7 +123,7 @@ const noticias = [
       </div>
       <br />
       <div>
-      <div className="container mt-5 rounded-5 fondo-home-2" style={{ maxWidth:'50%'}}>
+      <div className="container mt-5 rounded-5 fondo-home-2 border border-black" style={{ maxWidth:'50%'}}>
         <h1 className="d-flex justify-content-center mx-auto noticiasTitle">Noticias</h1>
         <Noticias noticias={noticias} />
         <br/>

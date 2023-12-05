@@ -29,10 +29,6 @@
     border-top-right-radius: 1rem;
 }
 
-.bg-color{
-    background: #F0D2B9;
-}
-
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-link.active:focus {
     background-color: #F0D2B9 /* Color de fondo para el tab activo */
@@ -40,10 +36,14 @@
   
 .nav-tabs .nav-link {
     background-color: #c98f60; /* Color de fondo para los tabs inactivos */
-
   }
 
-.animation:hover{
-    transform: scale(1.03);
+.animated-catalogo {
+    transition: transform 0.6s;
+    height:50%;
+    width: 350px;
+  }
 
-}
+  .animated-catalogo:hover {
+    transform: scale(1.04); 
+  }

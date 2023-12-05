@@ -4,9 +4,9 @@ import './Login.css';
 const Login: React.FC = () => {
   return (
     <div className="container">
-    <div className="row d-flex justify-content-center align-items-center ms-5 p-2 mt-5 mb-5">
-      <div className="ms-xxl-5 ms-xl-5 ms-lg-5 ms-md-5 ms-sm-4 col-xxl-5 col-xl-6 col-lg-7 col-md-10">
-        <div className="card shadow-2-strong rounded-4" style={{ backgroundColor: '#F0D2B9', minWidth: '85%' }}>
+    <div className="row d-flex justify-content-center p-2 mt-5 mb-5">
+      <div className="col-xxl-6 col-xl-6 col-lg-6 col-md-8 col-xs-12 col-sm-12 d-flex justify-content-center">
+        <div className="animated-login shadow-2-strong rounded-4" style={{ backgroundColor: '#F0D2B9', minWidth: '75%' }}>
           <div className="card-body p-4 text-center">
             <h2 className="mb-4 bold-text">Iniciar Sesión</h2>
             <hr></hr>

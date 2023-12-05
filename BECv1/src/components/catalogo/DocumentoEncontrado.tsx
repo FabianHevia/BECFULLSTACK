@@ -440,6 +440,7 @@ const DocumentoEncontrado: React.FC = () => {
       <select
         value={selectedCategory}
         onChange={(e) => setSelectedCategory(e.target.value)}
+        className="d-flex mx-auto mt-3"
       >
         {/* Opciones de categoría */}
         <option value="">Todas las categorías</option>
@@ -455,6 +456,7 @@ const DocumentoEncontrado: React.FC = () => {
       <select
         value={selectedType}
         onChange={(e) => setSelectedType(e.target.value)}
+        className="d-flex mx-auto mt-3"
       >
         {/* Opciones de tipo de libro */}
         <option value="">Todos los tipos</option>
@@ -469,16 +471,20 @@ const DocumentoEncontrado: React.FC = () => {
       {/* Campo de texto para que el usuario ingrese el autor */}
       <input
         type="text"
+        className="form-control form-control-lg mt-4 mx-auto"
         placeholder="Ingrese el autor"
         value={authorInput}
         onChange={(e) => setAuthorInput(e.target.value)}
+        style={{ maxWidth:'80%' }}
       />
       {/* Campo de texto para que el usuario ingrese el titulo */}
       <input
         type="text"
         placeholder="Ingrese el titulo"
+        className="form-control form-control-lg mt-4 mx-auto"
         value={tituloInput}
         onChange={(e) => setTituloInput(e.target.value)}
+        style={{ maxWidth:'80%' }}
       />
 
       {/* Mostrar la lista de documentos filtrados o mensaje si no hay coincidencias */}
