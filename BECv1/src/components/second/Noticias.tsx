@@ -8,7 +8,7 @@ interface NoticiaProps {
 }
 const Noticia: React.FC<NoticiaProps> = ({ titulo, resumen, fecha }) => {
   return (
-    <div className="d-flex justify-content-center container rounded-5 border border-black border-opacity-50 mb-3 animated" style={{ backgroundColor:'#F0D2B9', maxWidth:'50%'  }}>
+    <div className="animated mx-auto rounded-5 border border-black border-opacity-50 mb-3" style={{ backgroundColor:'#F0D2B9', maxWidth:'90%'  }}>
         <div className="row" style={{ gap: '10%', minWidth: '103%' }}>
             <div className="col-12">
                 <h2 className="titulo mt-2 mb-3">{titulo}</h2>
@@ -25,7 +25,7 @@ interface NoticiasProps {
 
 const Noticias: React.FC<NoticiasProps> = ({ noticias }) => {
   return (
-    <div className="noticias-container position-relative">
+    <div>
       {noticias.map((noticia, index) => (
         <Noticia
           key={index}

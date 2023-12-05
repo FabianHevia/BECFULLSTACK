@@ -1,8 +1,7 @@
 .card {
     transition: transform 0.3s;
-    min-width: 300px;
-    min-height: 300px;
-    max-width: 320px;
+    height:50%;
+    width: 350px;
   }
   
   .card.shadow:hover {
@@ -15,7 +14,5 @@
 
 .card-img-top-s{
   width: 100%;
-  min-width: 100px;
-  max-width: 320px;
-  min-height: 310px;
+  height: 350px;
 }

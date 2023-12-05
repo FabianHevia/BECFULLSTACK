@@ -11,3 +11,15 @@
     width: 100%;
     background-color: #fff;
 }
+
+.no-libros{
+    height: 100%;
+    width: 100%;
+}
+
+.no-libros-texto{
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    
+}

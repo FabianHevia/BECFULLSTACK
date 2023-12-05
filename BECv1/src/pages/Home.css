@@ -1,8 +1,10 @@
 .titleCards {
-  color: black;
+  color: white;
   text-align: center;
-  margin-top: 1em;
   font-weight: bold; 
+  font-size: 44px;
+  -webkit-text-stroke-width: 1.8px;
+  -webkit-text-stroke-color: black;
 }
 
 /* Establece un tamaño máximo para las imágenes en el carrusel */
@@ -16,7 +18,26 @@
 
 .noticiasTitle {
   color: white;
-  font-size: 30px;
+  font-size: 36px;
+}
+
+.fondo-home-1{
+  background-image: url('./FondoHome3.png');
+  background-size: cover;
+}
+
+.fondo-home-2{
+  background-image: url('./FondoHome5.png');
+  background-size: cover;
+}
+
+.buhogod{
+  width:12%;
+  height:12%;
+  margin-top: -3%;
+}
+.buhogod:hover{
+  transform: scale(1.04)
 }
 
 body{

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import DocumentStruct from '../second/DocumentStruct';
+import './Stylescatalogo.css';
 
 const DocumentoEncontrado: React.FC = () => {
   const [filteredDocuments, setFilteredDocuments] = useState([]); // Estado para almacenar documentos filtrados
@@ -484,8 +485,16 @@ const DocumentoEncontrado: React.FC = () => {
       {filteredDocuments.length > 0 ? (
         <DocumentStruct documents={filteredDocuments} />
       ) : (
-        <p>No se encontraron documentos que coincidan con los filtros seleccionados.</p>
-        // Aquí podrías mostrar otro componente o mensaje según tu preferencia
+        <div className="container mx-auto" style={{ backgroundColor:'#0000' }}>
+          <div className="row">
+            <div className="col-md-8">
+              <p className="position-relative start-50 top-50 translate-middle no-libros-texto">Lo sentimos, no pudimos encontrar un articulo que cumpliera con sus exigencias :(</p>
+            </div>
+            <div className="col-md-4">
+              <img className="mx-auto pe-5 no-libros" src="Mounstruos-nolibros-BEC.png" style={{ minWidth:'100px', minHeight:'100px' }}></img>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

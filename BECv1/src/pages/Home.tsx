@@ -69,38 +69,66 @@ const noticias = [
           <span className="carousel-control-next-icon" aria-hidden="true"></span>
         </button>
       </div>
-
-      <h2 className="titleCards">Destacados</h2>
       <br />
-      <div className="container">
+      <div className="container mt-5 rounded-5 fondo-home-1">
+      <br />
+        <h2 className="titleCards mt-5 mb-5">Destacados</h2>
         <div className="row">
-          <div className="adjust col-md-4 mb-4 d-flex justify-content-center">
+          <div className="col-md-4 col-xs-12 mb-4 d-flex justify-content-center">
             <Cards
-              link="https://www.loqueleo.com/mx/uploads/2018/07/resized/800_portada-un-libro-web.jpg"
-              title="John Doe"
-              information="Some example text some example text. John Doe is an architect and engineer"
+              link="Atlantis.jpg"
+              title="Atlantis: Proyecto Tarsis"
+              information="José Enrique Serrano Expósito"
             />
           </div>
-          <div className="card-img-top-home adjust col-md-4 mb-4 d-flex justify-content-center">
+          <div className="adjust col-md-4 col-xs-12 mb-4 d-flex justify-content-center">
             <Cards
-              link="https://www.loqueleo.com/mx/uploads/2018/07/resized/800_portada-un-libro-web.jpg"
-              title="John Doe"
-              information="Some example text some example text. John Doe is an architect and engineer"
+              link="CuentosDeOtono.webp"
+              title="Cuentos de Otoño"
+              information="José J. de Olañeta"
             />
           </div>
-          <div className="adjust col-md-4 mb-4 d-flex justify-content-center">
+          <div className="adjust col-md-4 col-xs-12 mb-4 d-flex justify-content-center">
             <Cards
-              link="https://www.loqueleo.com/mx/uploads/2018/07/resized/800_portada-un-libro-web.jpg"
-              title="John Doe"
-              information="Some example text some example text. John Doe is an architect and engineer"
+              link="HerederadeFuego.webp"
+              title="Heredera de Fuego"
+              information="Sarah J. Maas"
             />
           </div>
+          <div className="row">
+            <div className="adjust col-md-4 col-xs-12 mb-4 d-flex justify-content-center">
+              <Cards
+                link="MatarAunRuisenor.webp"
+                title="Matar a un Ruiseñor"
+                information="Harper Lee"
+              />
+            </div>
+            <div className="adjust col-md-4 col-xs-12 mb-4 d-flex justify-content-center">
+              <Cards
+                link="NaranjaMecanica.jpg"
+                title="La Naranja Mecanica"
+                information="Anthony Burges"
+              />
+            </div>
+            <div className="adjust col-md-4 col-xs-12 mb-4 d-flex justify-content-center">
+              <Cards
+                link="Elzorro.webp"
+                title="El Zorro en el bosque"
+                information="Salma Dubois"
+              />
+            </div>
+          </div>
+          <div className="mb-5" ></div>
         </div>
       </div>
       <br />
       <div>
-        <h1 className="mt-5 d-flex justify-content-center mx-auto noticiasTitle rounded-2" style= {{ backgroundColor: '#2f2321', maxWidth: '50.3%' }}>Noticias</h1>
+      <div className="container mt-5 rounded-5 fondo-home-2" style={{ maxWidth:'50%'}}>
+        <h1 className="d-flex justify-content-center mx-auto noticiasTitle">Noticias</h1>
         <Noticias noticias={noticias} />
+        <br/>
+        <img className="mb-2 buhogod" src="Buho BEC.png" style={{ minWidth:'100px', minHeight:'100px' }}></img>
+      </div>
       </div>
       <div className="mb-5">
         <div className="container mb-5" style={{ minHeight:'20px' }}>
