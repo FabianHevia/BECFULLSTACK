@@ -1,7 +1,35 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Stylescatalogo.css';
+import axios from 'axios';
 
 const ConsultaCatalogo: React.FC = () => {
+  useEffect(() => {
+    const getDocumentos = async () => {
+      try {
+        const response = await axios.post('http://localhost:3000/graphql', {
+          query: `
+            query {
+              documentos {
+                _id
+                tipoDocumento
+                categoria
+                titulo
+                autor
+                tema
+              }
+            }
+          `
+        });
+
+        console.log('Documentos:', response.data.data.documentos);
+      } catch (error) {
+        console.error('Error al obtener documentos:', error);
+      }
+    };
+
+    getDocumentos();
+  }, []);
+
   return (
     <div>
       <h2 className="text-color-cc ms-5">Búsqueda de documentos</h2>
@@ -75,5 +103,4 @@ const ConsultaCatalogo: React.FC = () => {
     </div>
   );
 };
-
 export default ConsultaCatalogo;
