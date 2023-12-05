@@ -327,6 +327,74 @@ const DocumentoEncontrado: React.FC = () => {
     title: 'Programación Funcional',
     author: 'Laura Funcional',
     type: 'Libro Técnico',
+    category: 'Ingeniería Informática', 
+  },
+
+  // Libros Teóricos
+  {
+    title: 'Estructuras de Datos y Algoritmos',
+    author: 'Carlos Algoritmo',
+    type: 'Libro Teórico',
+    category: 'Ingeniería Informática',
+  },
+  {
+    title: 'Machine Learning Explorado',
+    author: 'Laura Aprendiz',
+    type: 'Libro Teórico',
+    category: 'Ingeniería Informática',
+  },
+  {
+    title: 'Fundamentos de Redes de Computadoras',
+    author: 'Javier Redes',
+    type: 'Libro Teórico',
+    category: 'Ingeniería Informática',
+  },
+  {
+    title: 'Diseño de Compiladores Modernos',
+    author: 'Martina Compiladora',
+    type: 'Libro Teórico',
+    category: 'Ingeniería Informática',
+  },
+  {
+    title: 'Teoría de Sistemas Operativos',
+    author: 'Olivia Operativa',
+    type: 'Libro Teórico',
+    category: 'Ingeniería Informática',
+  },
+  {
+    title: 'Algoritmos Genéticos en la Optimización',
+    author: 'Gabriel Genético',
+    type: 'Libro Teórico',
+    category: 'Ingeniería Informática',
+  },
+  {
+    title: 'Teoría de la Información y Codificación',
+    author: 'Isabel Informática',
+    type: 'Libro Teórico',
+    category: 'Ingeniería Informática',
+  },
+  {
+    title: 'Inteligencia Artificial: Principios y Aplicaciones',
+    author: 'Roberto Inteligente',
+    type: 'Libro Teórico',
+    category: 'Ingeniería Informática',
+  },
+  {
+    title: 'Seguridad en Sistemas Distribuidos',
+    author: 'Sara Segura',
+    type: 'Libro Teórico',
+    category: 'Ingeniería Informática',
+  },
+  {
+    title: 'Programación Funcional Avanzada',
+    author: 'Fernanda Funcional',
+    type: 'Libro Teórico',
+    category: 'Ingeniería Informática',
+  },
+  {
+    title: 'Computación Gráfica: Fundamentos y Prácticas',
+    author: 'Carlos Gráfico',
+    type: 'Libro Teórico',
     category: 'Ingeniería Informática',
   }];
 
