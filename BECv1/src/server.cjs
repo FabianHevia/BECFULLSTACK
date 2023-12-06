@@ -7,6 +7,7 @@ const Noticia = require('./models/noticiasModelo.cjs');
 const Reservation = require('./models/reservaModelo.cjs');
 
 const app = express();
+const { buildSchema } = require('graphql');
 
 // Ruta para obtener documentos
 app.get('/api/documentos', async (req, res) => {
@@ -65,20 +66,37 @@ app.post('/api/reservar', async (req, res) => {
   }
 });
 
+app.post('/api/solicitar-prestamo', async (req, res) => {
+  const { bookID, requestType } = req.body; // Ajusta esto según los campos que esperas en la solicitud
+
+  try {
+    const nuevaSolicitud = new Reservation({
+      bookID,
+      requestType
+      // Aquí puedes agregar otros campos de solicitud si los necesitas
+    });
+
+    const solicitudGuardada = await nuevaSolicitud.save();
+    res.json(solicitudGuardada);
+  } catch (error) {
+    res.status(500).json({ message: 'Error al procesar la solicitud de préstamo' });
+  }
+});
+
 // Conectar a MongoDB
 mongoose.connect('mongodb://localhost:27017/becbs', { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-// Definir el esquema GraphQL
-const schema = buildSchema(`
+// Documentos
+
+const schemaDocumento = buildSchema(`
   type Documento {
     _id: ID!
-    tipoDocumento: String!
-    categoria: String!
-    titulo: String!
-    autor: String!
-    tema: String!
+    title: String!
+    author: String!
+    type: String!
+    category: String!
   }
 
   type Query {
@@ -86,21 +104,19 @@ const schema = buildSchema(`
   }
 
   type Mutation {
-    agregarDocumento(tipoDocumento: String!, categoria: String!, titulo: String!, autor: String!, tema: String!): Documento
+    agregarDocumento(title:: String!, author: String!, type: String!, category: String!): Documento
   }
 `);
 
 // Modelos de Mongoose
 const DocumentoModel = mongoose.model('Documento', {
-  tipoDocumento: String,
-  categoria: String,
-  titulo: String,
-  autor: String,
-  tema: String,
+  title: String,
+  author: String,
+  type: String,
+  category: String,
 });
 
-// Resolver para la consulta de todos los documentos
-const root = {
+const rootDocumento = {
   documentos: async () => await DocumentoModel.find(),
 
   agregarDocumento: async ({ tipoDocumento, categoria, titulo, autor, tema }) => {
@@ -110,11 +126,37 @@ const root = {
   },
 };
 
-app.use('/graphql', graphqlHTTP({
-  schema,
-  rootValue: root,
-  graphiql: true, // Habilitar GraphiQL en la ruta /graphql para probar consultas
-}));
+//Noticias
+
+const schemaNoticias = buildSchema(`
+  type Noticia {
+    _id: ID!
+    titulo: String!
+    resumen: String!
+    fecha: String!
+  }
+
+  type Mutation {
+    agregarNoticia(titulo: String!, resumen: String!, fecha: String!): Noticia
+  }
+`);
+
+const rootNoticias = {
+  agregarNoticia: async ({ titulo, resumen, fecha }) => {
+    try {
+      const nuevaNoticia = new Noticia({
+        titulo,
+        resumen,
+        fecha,
+      });
+
+      const noticiaGuardada = await nuevaNoticia.save();
+      return noticiaGuardada;
+    } catch (error) {
+      throw new Error('Error al guardar la noticia');
+    }
+  },
+};
 
 const usuarioSchema = new mongoose.Schema({
   correo: String,
@@ -123,12 +165,27 @@ const usuarioSchema = new mongoose.Schema({
 
 const Usuario = mongoose.model('Usuario', usuarioSchema);
 
-// Middleware para manejar datos JSON
-app.use(express.json());
+module.exports = {schemaNoticias, schemaDocumento};
 
-// Rutas para las operaciones del calendario
+// Resolver para la consulta de todos los documentos
+
+
+app.use('/graphql-documentos', graphqlHTTP({
+  schema: schemaDocumento,
+  rootValue: rootDocumento,
+  graphiql: true, // Habilitar GraphiQL para documentos
+}));
+
+app.use('/graphql-noticias', graphqlHTTP({
+  schema: schemaNoticias,
+  rootValue: rootNoticias,
+  graphiql: true, // Habilitar GraphiQL para noticias
+}));
+
 app.use('/api/calendario', calendarioRoutes);
 
+// Middleware para manejar datos JSON
+app.use(express.json());
 
 // Iniciar el servidor
 const PORT = process.env.PORT || 3000;
