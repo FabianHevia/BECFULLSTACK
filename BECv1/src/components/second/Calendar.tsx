@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker from 'react-datepicker';
-import './Calendar.css'
+import './Calendar.css';
+// Asumiendo que Calendario es un modelo de datos
 
 const DropdownCalendario: React.FC = () => {
   const [showCalendar, setShowCalendar] = useState(false);
@@ -18,34 +19,34 @@ const DropdownCalendario: React.FC = () => {
 
   return (
     <div className="dropdown">
-      <button 
+      <button
         className="btn btn-secondary"
         type="button"
         id="dropdownCalendario"
         onClick={handleToggleCalendar}
-        aria-expanded="false" 
-        style={{ backgroundColor: '#57412E', minWidth: '100%'}}>
+        aria-expanded="false"
+        style={{ backgroundColor: '#57412E', minWidth: '100%' }}>
         Calendario
       </button>
       {showCalendar && (
-      <div 
-        className="dropdown-menu show"
-        aria-labelledby="dropdownCalendario"
-        style={{ minWidth: '100%' }}>
-        <div className="p-2">
-          <DatePicker
-            className="form-control"
-            selected={selectedDate}
-            onChange={handleDateChange}
-            placeholderText="Seleccionar fecha"
-            dateFormat="yyyy-MM-dd"
-            autoComplete="off"
-            inline
-          />
+        <div
+          className="dropdown-menu show"
+          aria-labelledby="dropdownCalendario"
+          style={{ minWidth: '100%' }}>
+          <div className="p-2">
+            <DatePicker
+              className="form-control"
+              selected={selectedDate}
+              onChange={handleDateChange}
+              placeholderText="Seleccionar fecha"
+              dateFormat="yyyy-MM-dd"
+              autoComplete="off"
+              inline
+            />
           </div>
         </div>
       )}
-      </div>
+    </div>
   );
 };
 

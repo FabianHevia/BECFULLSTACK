@@ -1,5 +1,5 @@
 import { Carousel } from '../../node_modules/bootstrap';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Cards from '../components/second/Cards';
 import Noticias from '../components/second/Noticias';
 import './Home.css';
@@ -111,6 +111,15 @@ const noticias = [
 };
 
 const Home: React.FC = () => {
+  const [noticias, setNoticias] = useState([]);
+
+  useEffect(() => {
+    // Realizar una solicitud GET al servidor para obtener las noticias
+    fetch('/api/noticias')
+      .then((res) => res.json())
+      .then((data) => setNoticias(data))
+      .catch((error) => console.error('Error al obtener las noticias:', error));
+  }, []);
   return (
     <div>
       <MyCarousel />

@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import DocumentStruct from '../second/DocumentStruct';
+<<<<<<< Updated upstream
+=======
+import './Stylescatalogo.css';
+import axios from 'axios'; // Importa Axios o la librería que uses para hacer solicitudes HTTP
+>>>>>>> Stashed changes
 
 const DocumentoEncontrado: React.FC = () => {
   const [filteredDocuments, setFilteredDocuments] = useState([]); // Estado para almacenar documentos filtrados
@@ -9,7 +14,6 @@ const DocumentoEncontrado: React.FC = () => {
   const [selectedType, setSelectedType] = useState(''); // Estado para el tipo de libro seleccionado
   const [authorInput, setAuthorInput] = useState(''); // Estado para almacenar el autor ingresado por el usuario
   const [tituloInput, setTituloInput] = useState(''); // Estado para almacenar el titulo ingresado por el usuario
-
 
 
   const documents = [
@@ -428,10 +432,17 @@ const DocumentoEncontrado: React.FC = () => {
     setFilteredDocuments(filtered); // Actualizar la lista de documentos filtrados
   };
 
-  // Llamar a la función de filtro cuando se cambie la categoría, autor o tipo seleccionado
-  useEffect(() => {
-    applyFilters();
-  }, [selectedCategory, selectedAuthor, selectedType]);
+  /*   useEffect(() => {
+    const fetchDocumentos = async () => {
+      try {
+        const response = await axios.get<DocumentData[]>('http://localhost:3001/api/documentos');
+        setFilteredDocuments(response.data);
+      } catch (error) {
+        console.error('Error al obtener los documentos:', error);
+      }
+    };
+    fetchDocumentos();
+  }, []); */
 
   return (
     <div>

@@ -5,17 +5,21 @@
     max-width: 320px;
   }
   
-  .card.shadow:hover {
-    transform: scale(1.04);
+.card.shadow:hover {
+  transform: scale(1.04);
   }
 
-  .card:hover {
-    transform: scale(1.04); 
+.card:hover {
+  transform: scale(1.04); 
   }
 
 .card-img-top-s{
   width: 100%;
+<<<<<<< Updated upstream
   min-width: 100px;
   max-width: 320px;
   min-height: 310px;
+=======
+  height: 450px;
+>>>>>>> Stashed changes
 }
