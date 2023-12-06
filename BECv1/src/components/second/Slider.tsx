@@ -2,18 +2,15 @@ import React, { useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Styleslider.css';
 
-const Card = ({ imageURL, altText }: { imageURL: string; altText: string }) => {
+const Card2 = ({ imageURL, title }: { imageURL: string; title: string; }) => {
   return (
-    <div className="card">
-      <img src={imageURL} className="card-img-top" alt={altText} />
+    <div className="card2">
+      <img src={imageURL} className="card-img-top"/>
       <div className="card-body">
-        <h5 className="card-title">Card title</h5>
+        <h5 className="card-title">{title}</h5>
         <p className="card-text">
-
         </p>
-        <a href="#" className="btn btn-primary">
-            
-        </a>
+        <button className="btn btn-primary">Enter</button>
       </div>
     </div>
   );
@@ -21,7 +18,7 @@ const Card = ({ imageURL, altText }: { imageURL: string; altText: string }) => {
 
 const Slider: React.FC = () => {
   const handlePrevButtonClick = () => {
-    const cardsWrapper = document.querySelector<HTMLElement>('.cards-wrapper');
+    const cardsWrapper = document.querySelector<HTMLElement>('.cards2-wrapper');
     if (cardsWrapper) {
       const scrollSpeed = 8; // Velocidad de desplazamiento
       const delay = 10; // Retraso entre cada cambio de posición
@@ -40,7 +37,7 @@ const Slider: React.FC = () => {
   };
 
   const handleNextButtonClick = () => {
-    const cardsWrapper = document.querySelector<HTMLElement>('.cards-wrapper');
+    const cardsWrapper = document.querySelector<HTMLElement>('.cards2-wrapper');
     if (cardsWrapper) {
       const scrollSpeed = 8; // Velocidad de desplazamiento
       const delay = 10; // Retraso entre cada cambio de posición
@@ -84,13 +81,15 @@ const Slider: React.FC = () => {
       {/* The slideshow/carousel */}
       <div className="carousel-inner">
         <div className="carousel-item active">
-          <div className="cards-wrapper">
-            <Card imageURL="CuentosDeOtono.webp" altText="Descripción de la imagen 1" />
-            <Card imageURL="Elzorro.webp" altText="Descripción de la imagen 2" />
-            <Card imageURL="MatarAunRuisenor.webp" altText="Descripción de la imagen 3" />
-            <Card imageURL="CuentosDeOtono.webp" altText="Descripción de la imagen 1" />
-            <Card imageURL="Elzorro.webp" altText="Descripción de la imagen 2" />
-            <Card imageURL="MatarAunRuisenor.webp" altText="Descripción de la imagen 3" />
+          <div className="cards2-wrapper">
+            <Card2 imageURL="CuentosDeOtono.webp" title="Cuentos De Otoño" />
+            <Card2 imageURL="Elzorro.webp" title="El Zorro en el bosque"/>
+            <Card2 imageURL="MatarAunRuisenor.webp" title="Matar a un ruiseñor" />
+            <Card2 imageURL="NaranjaMecanica.jpg" title="La Naranja Mecanica" />
+            <Card2 imageURL="HerederadeFuego.webp" title="Heredera de Fuego" />
+            <Card2 imageURL="Atlantis.jpg" title="Atlantis"/>
+            <Card2 imageURL="Atoeas.jpg" title="A Teaspoon of Earth and Sea" />
+            <Card2 imageURL="libro-imprenta-lima.jpg" title="Los hombres del norte"/>
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-.cards-wrapper {
+.cards2-wrapper {
     display: flex;
     overflow-x: auto; /* Permite el scroll horizontal */
     gap: 20px; /* Espacio entre las tarjetas */
@@ -7,28 +7,35 @@
     -ms-overflow-style: none; /* Oculta la barra de desplazamiento en Internet Explorer y Edge */
   }
   
-  .cards-wrapper::-webkit-scrollbar {
+.cards2-wrapper::-webkit-scrollbar {
     display: none; /* Oculta la barra de desplazamiento en navegadores basados en WebKit (Chrome, Safari) */
   }
   
+.card2:hover {
+    transform: scale(1.04); 
+  }
+
+.card2 {
+    transition: transform 0.3s;
+    flex: 0 0 auto;
+    width: 300px;
+    max-width: 20%; /* Ancho fijo para cada tarjeta (ajusta según tus necesidades) */
+    box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
+    background-color: white;
+    border: none;
+    border-radius: 0;
+}
   
-    .card {
-        flex: 0 0 auto;
-        width: 300px; /* Ancho fijo para cada tarjeta (ajusta según tus necesidades) */
-        box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
-        border: none;
-        border-radius: 0;
-    }
-  
-    .card img {
-        max-width: 100%;
-        max-height: 100%;
-    }
+.card2 img {
+    max-height: 80%;
+    min-width: 100%;
+    min-height: 200px;
+}
   
     
   
-    @media (min-width: 768px) {
-        .card img {
-            height: 11em;
-        }
+@media (min-width: 768px) {
+    .card2 img {
+        height: 11em;
     }
+}

@@ -139,6 +139,13 @@ const noticias = [
 };
 
 const Home: React.FC = () => {
+  useEffect(() => {
+    // Realizar una solicitud GET al servidor para obtener las noticias
+    fetch('/api/noticias')
+      .then((res) => res.json())
+      .then((data) => setNoticias(data))
+      .catch((error) => console.error('Error al obtener las noticias:', error));
+  }, []);
   return (
     <div>
       <MyCarousel />
