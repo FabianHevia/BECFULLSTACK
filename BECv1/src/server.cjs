@@ -1,13 +1,13 @@
 const express = require('express');
 const { graphqlHTTP } = require('express-graphql');
 const { buildSchema } = require('graphql');
+const app = express();
+const router = express.Router();
 const mongoose = require('mongoose');
+
 const calendarioRoutes = require('./models/MCalendario/calendarioRoutes.cjs');
 const Noticia = require('./models/noticiasModelo.cjs');
 const Reservation = require('./models/reservaModelo.cjs');
-
-const app = express();
-const { buildSchema } = require('graphql');
 
 // Ruta para obtener documentos
 app.get('/api/documentos', async (req, res) => {
@@ -104,7 +104,7 @@ const schemaDocumento = buildSchema(`
   }
 
   type Mutation {
-    agregarDocumento(title:: String!, author: String!, type: String!, category: String!): Documento
+    agregarDocumento(title: String!, author: String!, type: String!, category: String!): Documento
   }
 `);
 
@@ -119,8 +119,8 @@ const DocumentoModel = mongoose.model('Documento', {
 const rootDocumento = {
   documentos: async () => await DocumentoModel.find(),
 
-  agregarDocumento: async ({ tipoDocumento, categoria, titulo, autor, tema }) => {
-    const documento = new DocumentoModel({ tipoDocumento, categoria, titulo, autor, tema });
+  agregarDocumento: async ({ title, author, type, category }) => {
+    const documento = new DocumentoModel({ title, author, type, category });
     await documento.save();
     return documento;
   },
@@ -158,6 +158,34 @@ const rootNoticias = {
   },
 };
 
+const Schema = `
+  type Documento {
+    _id: ID!
+    title: String!
+    author: String!
+    type: String!
+    category: String!
+  }
+
+  type Noticia {
+    _id: ID!
+    titulo: String!
+    resumen: String!
+    fecha: String!
+  }
+
+  type Query {
+    documentos: [Documento]
+  }
+
+  type Mutation {
+    agregarDocumento(title: String!, author: String!, type: String!, category: String!): Documento
+    agregarNoticia(titulo: String!, resumen: String!, fecha: String!): Noticia
+  }
+`;
+
+const mergedSchema = buildSchema(Schema);
+
 const usuarioSchema = new mongoose.Schema({
   correo: String,
   contraseña: String,
@@ -167,26 +195,22 @@ const Usuario = mongoose.model('Usuario', usuarioSchema);
 
 module.exports = {schemaNoticias, schemaDocumento};
 
-// Resolver para la consulta de todos los documentos
+const mergedRoot = {
+  ...rootDocumento,
+  ...rootNoticias,
+};
 
-
-app.use('/graphql-documentos', graphqlHTTP({
-  schema: schemaDocumento,
-  rootValue: rootDocumento,
-  graphiql: true, // Habilitar GraphiQL para documentos
+router.use('/graphql', graphqlHTTP({
+  schema: mergedSchema,
+  rootValue: mergedRoot,
+  graphiql: true, // Habilitar GraphiQL
 }));
 
-app.use('/graphql-noticias', graphqlHTTP({
-  schema: schemaNoticias,
-  rootValue: rootNoticias,
-  graphiql: true, // Habilitar GraphiQL para noticias
-}));
+app.use('/', router);
 
-app.use('/api/calendario', calendarioRoutes);
-
-// Middleware para manejar datos JSON
 app.use(express.json());
 
+app.use('/api/calendario', calendarioRoutes);
 // Iniciar el servidor
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

@@ -38,4 +38,4 @@ const Noticias: React.FC<NoticiasProps> = ({ noticias }) => {
   );
 };
 
-export default Noticias;
+export { Noticias };
