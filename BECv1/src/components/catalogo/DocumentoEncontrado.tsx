@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import DocumentStruct from '../second/DocumentStruct';
-<<<<<<< Updated upstream
-=======
 import './Stylescatalogo.css';
 import axios from 'axios'; // Importa Axios o la librería que uses para hacer solicitudes HTTP
->>>>>>> Stashed changes
 
 const DocumentoEncontrado: React.FC = () => {
   const [filteredDocuments, setFilteredDocuments] = useState([]); // Estado para almacenar documentos filtrados
