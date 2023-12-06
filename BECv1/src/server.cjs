@@ -2,10 +2,9 @@ const express = require('express');
 const { graphqlHTTP } = require('express-graphql');
 const { buildSchema } = require('graphql');
 const mongoose = require('mongoose');
-const Documento = require('./src/models/documentoModelo.js');
-const calendarioRoutes = require('./src/models/Mcalendario/calendarioRoutes.js');
-const Noticia = require('./src/models/noticiasModelo.js');
-const Reservation = require('/src/models/reservaModelo.js');
+const calendarioRoutes = require('./models/MCalendario/calendarioRoutes.cjs');
+const Noticia = require('./models/noticiasModelo.cjs');
+const Reservation = require('./models/reservaModelo.cjs');
 
 const app = express();
 
