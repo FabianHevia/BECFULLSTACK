@@ -2,6 +2,7 @@ import { Carousel } from '../../node_modules/bootstrap';
 import React, { useEffect, useState } from 'react';
 import Cards from '../components/second/Cards';
 import { Noticias } from '../components/second/Noticias';
+import axios, { AxiosResponse } from 'axios';
 import './Home.css';
 
 const MyCarousel: React.FC = () => {
@@ -111,15 +112,37 @@ const MyCarousel: React.FC = () => {
   );
 };
 
+interface Noticia {
+  id: number;
+  titulo: string;
+  contenido: string;
+  // ... otros campos de la noticia
+}
+
 const Home: React.FC = () => {
-  const [noticias, setNoticias] = useState([]);
+  const [noticias, setNoticias] = useState<any[]>([]);
 
   useEffect(() => {
-    // Realizar una solicitud GET al servidor para obtener las noticias
-    fetch('/api/noticias')
-      .then((res) => res.json())
-      .then((data) => setNoticias(data))
-      .catch((error) => console.error('Error al obtener las noticias:', error));
+    // Función para obtener las noticias desde la API
+    const obtenerNoticias = async (): Promise<void> => {
+      try {
+        // Realiza la solicitud a la API de noticias
+        const response: AxiosResponse<Noticia[]> = await axios.get('http://localhost:3000/api/noticias');
+
+        // Verifica si la respuesta contiene datos en forma de arreglo
+        if (Array.isArray(response.data)) {
+          // Actualiza el estado de noticias con los datos obtenidos
+          setNoticias(response.data);
+        } else {
+          console.error('La respuesta no es un array:', response.data);
+        }
+      } catch (error) {
+        console.error('Error al obtener las noticias:', error);
+      }
+    };
+
+    // Llama a la función para obtener las noticias al cargar el componente
+    obtenerNoticias();
   }, []);
   return (
     <div>
