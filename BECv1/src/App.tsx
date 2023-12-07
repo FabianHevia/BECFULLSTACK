@@ -17,7 +17,6 @@ const App: React.FC = () => {
   return (
     <Router>
       <Layout handleNavigation={handleNavigation} currentPage={currentPage} background="linear-gradient(45deg, #ddbb93, #ddd8d3, #ddbb93)">
-        <body>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/catalogo" element={<Catalogo />} />
@@ -25,7 +24,6 @@ const App: React.FC = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/reservas" element={<Reservas />} />
           </Routes>
-        </body>
       </Layout>
     </Router>
   );
