@@ -38,16 +38,12 @@ const Header: React.FC<HeaderInter> = ({ handleNavigation }) => {
                 <NavLink to="/catalogo" className="nav-link text-dark letra font-weight-bold d-flex align-items-center me-2" onClick={() => handleNavigation('catalogo')}>Catalogo</NavLink>
                 <ul className="dropdown-menu ">
                   <li><NavLink to="/catalogoUsuario" className="dropdown-item" onClick={() => handleNavigation('catalogoUsuario')}>Usuario</NavLink></li>
-                  <li><NavLink to="/catalogo" className="dropdown-item" onClick={() => handleNavigation('catalogo')}>Empleado</NavLink></li>
                 </ul>
               </li>
             </div>
             <li className="nav-item">
-              <NavLink to="/reservas" className="nav-link text-dark letra font-weight-bold d-flex align-items-center me-2" onClick={() => handleNavigation('reservas')}>Reserva</NavLink>
-            </li>
-            <li className="nav-item">
               <NavLink to="/login" className="nav-link" role="button">
-                <i className="fa fa-user" aria-hidden="true"></i>
+                <p className="fa fa-user" aria-hidden="true"> Iniciar Sesion</p>
               </NavLink>
             </li>
           </ul>

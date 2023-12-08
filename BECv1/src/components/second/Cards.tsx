@@ -1,5 +1,6 @@
 import React from 'react';
 import './Stylecards.css';
+import { Link } from 'react-router-dom'; // Importa Link desde react-router-dom
 
 interface CardAnimate {
   link?: string;
@@ -7,10 +8,11 @@ interface CardAnimate {
   messageButton?: string;
   information?: string;
 }
+
 const Cards: React.FC<CardAnimate> = ({
   link = '',
   title,
-  messageButton = 'Enter',
+  messageButton = 'Reservar',
   information = '',
 }: CardAnimate) => {
   const cardClass = `card`;
@@ -21,9 +23,11 @@ const Cards: React.FC<CardAnimate> = ({
       <div className="card-body">
         <h4 className="card-title">{title}</h4>
         <p className="card-text">{information}</p>
-        <button className="btn btn-primary">{messageButton}</button>
+        {/* Utiliza Link para redireccionar a la página de "reservas" */}
+        <Link to="/reservas" className="btn btn-primary">{messageButton}</Link>
       </div>
     </div>
   );
 };
+
 export default Cards;

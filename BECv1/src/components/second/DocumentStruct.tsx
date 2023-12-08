@@ -1,6 +1,7 @@
 import React from 'react';
 import './DocumentStruct.css';
 import { DocumentData } from '../catalogo/DocumentData';
+import { Link } from 'react-router-dom';
 
 interface DocumentStructProps {
   documents: DocumentData[];
@@ -17,17 +18,21 @@ const DocumentStruct: React.FC<DocumentStructProps> = ({ documents }) => {
               <th className="text-center">Autor</th>
               <th className="text-center">Tipo</th>
               <th className="text-center">Categoría</th>
+              <th className="text-center">Reservar</th> {/* Columna para los botones */}
             </tr>
           </thead>
           <tbody>
-            {documents.map((doc, index) => (
-              <tr key={index}>
-                <td className="text-center">{doc.title}</td>
-                <td className="text-center">{doc.author}</td>
-                <td className="text-center">{doc.type}</td>
-                <td className="text-center">{doc.category}</td>
-              </tr>
-            ))}
+          {documents.map((doc, index) => (
+            <tr key={index}>
+              <td className="text-center">{doc.title}</td>
+              <td className="text-center">{doc.author}</td>
+              <td className="text-center">{doc.type}</td>
+              <td className="text-center">{doc.category}</td>
+              <td className="text-center">
+                <Link to={'/reservas'} className="btn btn-primary">Reservar</Link>
+              </td>
+            </tr>
+          ))}
           </tbody>
         </table>
       </div>
