@@ -1,25 +1,37 @@
 const express = require('express');
-const router = express.Router(); // Define un nuevo Router
+const router = express.Router();
+const Registro = require('../models/registroModelo.cjs');
 
-const Registrar = require('../models/registrarModelo.cjs');
+// Obtener todas las registro
+router.get('/api/usuarios', async (req, res) => {
+  try {
+    const registros = await Registro.find();
+    res.json(registros);
+  } catch (error) {
+    res.status(500).json({ message: 'Error al obtener las registros' });
+  }
+});
 
-router.post('/api/registrar', async (req, res) => {
-    try {
-      const { correo, contraseña } = req.body;
-  
-      // Crear un nuevo usuario
-      const nuevoRegistrar = new Registrar({
-        correo,
-        contraseña,
-      });
-  
-      // Guardar el usuario en la base de datos
-      await nuevoRegistrar.save();
-  
-      res.status(201).json({ mensaje: 'Usuario registrado correctamente' });
-    } catch (error) {
-      res.status(500).json({ mensaje: 'Error al registrar el usuario' });
-    }
-  });
+router.post('/api/usuarios', async (req, res) => {
+  console.log('Cuerpo de la solicitud registro:', req.body);
+  const { email, password } = req.body;
+
+  // Verificar si todas las propiedades están presentes en req.body
+  if (!email || !password) {
+    return res.status(400).json({ message: 'Faltan datos requeridos para el registro' });
+  }
+
+  try {
+    const nuevoRegistro= new Registro({
+      email,
+      password,
+    });
+
+    const RegistroValidado = await nuevoRegistro.save();
+    res.json(RegistroValidado);
+  } catch (error) {
+    res.status(500).json({ message: 'Error al validar el registro' });
+  }
+});
 
 module.exports = router;

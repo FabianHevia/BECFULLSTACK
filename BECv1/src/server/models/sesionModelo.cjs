@@ -15,7 +15,7 @@ const usuarioSchema = new mongoose.Schema({
 
 usuarioSchema.pre('save', async function (next) {
     try {
-        if (this.isModified('pass')) {
+        if (this.isModified('password')) {
         }
         next();
     } catch (error) {
@@ -23,6 +23,6 @@ usuarioSchema.pre('save', async function (next) {
     }
 });
 
-const Registrar = mongoose.model('Noticia', usuarioSchema);
+const Sesion = mongoose.model('Sesion', usuarioSchema);
 
-module.exports = Registrar;
+module.exports = Sesion;

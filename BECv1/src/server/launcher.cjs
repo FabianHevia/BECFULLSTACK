@@ -25,18 +25,30 @@ const documentoApi = require('./apis/documentoApi.cjs');
 const { reservaQueryResolver, agregarReservaMutationResolver } = require('./resolvers/reservaResolver.cjs');
 const reservaApi = require('./apis/reservaApi.cjs');
 
+//Registro
+const { registrosQueryResolver, agregarRegistroMutationResolver } = require('./resolvers/registroResolver.cjs');
+const registroApi = require('./apis/registroApi.cjs');
+
+//Login
+const { sesionQueryResolver, agregarSesionMutationResolver } = require('./resolvers/sesionResolver.cjs');
+const sesionApi = require('./apis/sesionApi.cjs');
+
 const schema = makeExecutableSchema({
   typeDefs,
   resolvers: {
     Query: {
       noticias: noticiasQueryResolver,
       documentos: documentosQueryResolver,
-      reserva: reservaQueryResolver
+      reserva: reservaQueryResolver,
+      registros: registrosQueryResolver,
+      sesion: sesionQueryResolver,
     },
     Mutation: {
       agregarNoticia: agregarNoticiaMutationResolver,
       agregarDocumento: agregarDocumentoMutationResolver,
-      agregarReserva: agregarReservaMutationResolver
+      agregarReserva: agregarReservaMutationResolver,
+      agregarRegistro: agregarRegistroMutationResolver,
+      agregarSesion: agregarSesionMutationResolver,
     },
   },
 });
@@ -63,6 +75,8 @@ startApolloServer()
     app.use('/', documentoApi);
     app.use('/', noticiasApi);
     app.use('/', reservaApi);
+    app.use('/', registroApi);
+    app.use('/', sesionApi);
 
     module.exports = { schema };
 

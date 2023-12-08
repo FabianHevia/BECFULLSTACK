@@ -22,16 +22,30 @@ const typeDefs = gql`
     requestType: String!
   }
 
+  type Registro {
+    email: String!
+    password: String!
+  }
+
+  type Sesion {
+    email: String!
+    password: String!
+  }
+
   type Query {
     documentos: [Documento]
     noticias: [Noticia]
     reserva: [Reserva]
+    registros: [Registro]
+    sesion: [Sesion]
   }
 
   type Mutation {
     agregarDocumento(title: String!, author: String!, type: String!, category: String!): Documento
     agregarNoticia(titulo: String!, resumen: String!, fecha: String!): Noticia
     agregarReserva(bookID: String!, deliveryDate: String!, requestType: String!): Reserva
+    agregarRegistro(email: String!, password: String!): Registro
+    agregarSesion(email: String!, password: String!): Sesion
   }
 `;
 
