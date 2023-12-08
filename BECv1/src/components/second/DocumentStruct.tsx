@@ -1,12 +1,6 @@
 import React from 'react';
 import './DocumentStruct.css';
-
-interface DocumentData {
-  title: string;
-  author: string;
-  type: string;
-  category: string;
-}
+import { DocumentData } from '../catalogo/DocumentData';
 
 interface DocumentStructProps {
   documents: DocumentData[];
