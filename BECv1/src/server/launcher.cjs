@@ -7,6 +7,8 @@ const express = require('express');
 const app = express();
 const router = express.Router();
 const PORT = 3000;
+const cors = require('cors');
+const bodyParser = require('body-parser');
 
 //Types
 const typeDefs = require('./types/page.ts');
@@ -16,23 +18,25 @@ const { noticiasQueryResolver, agregarNoticiaMutationResolver } = require('./res
 const noticiasApi = require('./apis/noticiasApi.cjs');
 
 //Documentos
-const { documentosQueryResolver, agregarDocumentoMutationResolver} = require('./resolvers/documentoResolver.cjs');
+const { documentosQueryResolver, agregarDocumentoMutationResolver } = require('./resolvers/documentoResolver.cjs');
 const documentoApi = require('./apis/documentoApi.cjs');
 
-//Calendario
-const calendarioRoutes = require('./resolvers/calendarioResolver.cjs');
-const Reservation = require('./models/reservaModelo.cjs');
+//Reserva
+const { reservaQueryResolver, agregarReservaMutationResolver } = require('./resolvers/reservaResolver.cjs');
+const reservaApi = require('./apis/reservaApi.cjs');
 
 const schema = makeExecutableSchema({
   typeDefs,
   resolvers: {
     Query: {
       noticias: noticiasQueryResolver,
-      documentos: documentosQueryResolver
+      documentos: documentosQueryResolver,
+      reserva: reservaQueryResolver
     },
     Mutation: {
       agregarNoticia: agregarNoticiaMutationResolver,
-      agregarDocumento: agregarDocumentoMutationResolver
+      agregarDocumento: agregarDocumentoMutationResolver,
+      agregarReserva: agregarReservaMutationResolver
     },
   },
 });
@@ -47,35 +51,18 @@ async function startApolloServer() {
 // Habilitar CORS para todas las solicitudes
 startApolloServer()
   .then(() => {
+    // Configuración de body-parser para manejar solicitudes JSON
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({ extended: true }));
     // Habilitar CORS para todas las solicitudes
-    app.use((req, res, next) => {
-      res.header('Access-Control-Allow-Origin', 'http://localhost:5173'); // Reemplaza esto con tu dominio
-      res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-      next();
-    });
+    app.use(cors({
+      origin: 'http://localhost:5173',
+      credentials: true,
+    }));
 
-    // Ruta para obtener documentos
     app.use('/', documentoApi);
-
-    // Ruta para obtener noticias
     app.use('/', noticiasApi);
-
-    app.post('/api/solicitar-prestamo', async (req, res) => {
-      const { bookID, requestType } = req.body; // Ajusta esto según los campos que esperas en la solicitud
-
-      try {
-        const nuevaSolicitud = new Reservation({
-          bookID,
-          requestType
-          // Aquí puedes agregar otros campos de solicitud si los necesitas
-        });
-
-        const solicitudGuardada = await nuevaSolicitud.save();
-        res.json(solicitudGuardada);
-      } catch (error) {
-        res.status(500).json({ message: 'Error al procesar la solicitud de préstamo' });
-      }
-    });
+    app.use('/', reservaApi);
 
     module.exports = { schema };
 

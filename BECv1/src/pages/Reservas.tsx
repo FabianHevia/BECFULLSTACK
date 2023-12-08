@@ -2,59 +2,48 @@ import React, { useState } from 'react';
 import './Reservas.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import DropdownCalendario from '../components/second/Calendar';
+import axios from 'axios';
+
+import { generarCodigoAleatorio } from '../server/controller/reservaCode';
 
 const Reservas: React.FC = () => {
-  const [bookID, setBookID] = useState<number | string>('');
-  const [requestType, setRequestType] = useState<string>('');
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [ingresarID, setIngresarID] = useState<string>('');
 
-  const handleReserve = async () => {
-    try {
-      const data = { bookID, requestType };
-      const response = await fetch('/api/reservar', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (response.ok) {
-        console.log('Reserva exitosa');
-        // Aquí puedes agregar lógica adicional luego de una reserva exitosa
-      } else {
-        console.error('Error al realizar la reserva');
+  const handleReservaClick = async () => {
+    if (selectedDate && ingresarID) {
+      let fechaReserva = selectedDate.toISOString(); // Obtener la fecha en formato ISO
+      let idCompra = generarCodigoAleatorio(); // Generar un ID aleatorio inicial
+      
+      console.log('bookID:', ingresarID);
+      console.log('deliveryDate:', fechaReserva);
+      console.log('requestType:', idCompra);
+      
+      try {
+        // Guardamos la reserva utilizando el idCompra único generado
+        await axios.post('http://localhost:3000/api/reservas', {
+          bookID: ingresarID,
+          deliveryDate: fechaReserva,
+          requestType: idCompra,
+        });
+        
+        console.log('Reserva exitosa:', idCompra);
+      } catch (error) {
+        console.error('Error al hacer la reserva:', error);
       }
-    } catch (error) {
-      console.error('Error al enviar la solicitud: ', error);
+    } else {
+      console.log('Selecciona una fecha e ingresa un ID antes de reservar.');
     }
   };
 
-  const handleBookIDChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setBookID(e.target.value);
+  const handleDateChange = (date: Date | null) => {
+    setSelectedDate(date);
   };
-
-  const handleBorrowRequest = async () => {
-    // Lógica para la solicitud de préstamo
-    try {
-      const data = { bookID }; // Solo se requiere el bookID para la solicitud de préstamo
-      const response = await fetch('/api/solicitar-prestamo', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (response.ok) {
-        console.log('Solicitud de préstamo exitosa');
-        // Aquí puedes agregar lógica adicional luego de una solicitud exitosa
-      } else {
-        console.error('Error al solicitar el préstamo');
-      }
-    } catch (error) {
-      console.error('Error al enviar la solicitud de préstamo: ', error);
-    }
+  
+  const handleIDChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setIngresarID(event.target.value);
   };
+  
 
   return (
       <div className="container mt-5">
@@ -74,21 +63,21 @@ const Reservas: React.FC = () => {
                       type="number"
                       id="ingresarID"
                       className="form-control form-control-lg rounded-4"
-                      value={bookID}
-                      onChange={handleBookIDChange}
+                      value={ingresarID}
+                      onChange={handleIDChange}
                     />
                   </div>
                   <hr />
                   <div className="mt-1">
                     <p>Seleccione la fecha de entrega</p>
-                    <DropdownCalendario />
+                    <DropdownCalendario onDateChange={handleDateChange}/>
                   </div>
                   <hr />
                   <button
                     className="btn btn-primary btn-lg btn-block mb-1 mt-1 rounded-3"
                     type="submit"
                     style={{ width: '100%', color: 'white', backgroundColor: '#57412E' }}
-                    onClick={handleReserve}
+                    onClick={handleReservaClick}
                   >
                     Reservar
                   </button>
@@ -117,8 +106,6 @@ const Reservas: React.FC = () => {
                       type="number"
                       id="ingresarID2"
                       className="form-control form-control-lg rounded-4"
-                      value={bookID}
-                      onChange={handleBookIDChange}
                     />
                   </div>
                   <hr />
@@ -126,7 +113,6 @@ const Reservas: React.FC = () => {
                     className="btn btn-primary btn-lg btn-block mt-1 rounded-3"
                     type="submit"
                     style={{ width: '100%', color: 'white', backgroundColor: '#57412E' }}
-                    onClick={handleBorrowRequest}
                   >
                     Solicitar
                   </button>

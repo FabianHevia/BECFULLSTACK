@@ -3,8 +3,11 @@ import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker from 'react-datepicker';
 import './Calendar.css';
 // Asumiendo que Calendario es un modelo de datos
+interface DropdownCalendarioProps {
+  onDateChange: (date: Date | null) => void;
+}
 
-const DropdownCalendario: React.FC = () => {
+const DropdownCalendario: React.FC<DropdownCalendarioProps> = ({ onDateChange }) => {
   const [showCalendar, setShowCalendar] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
@@ -14,6 +17,7 @@ const DropdownCalendario: React.FC = () => {
 
   const handleDateChange = (date: Date | null) => {
     setSelectedDate(date);
+    onDateChange(date);
     setShowCalendar(false); // Oculta el calendario después de seleccionar una fecha
     console.log('Fecha seleccionada:', date); // Agregar console.log para verificar la fecha seleccionada
   };
@@ -52,3 +56,4 @@ const DropdownCalendario: React.FC = () => {
 };
 
 export default DropdownCalendario;
+
