@@ -30,7 +30,7 @@ const DropdownCalendario: React.FC<DropdownCalendarioProps> = ({ onDateChange })
         id="dropdownCalendario"
         onClick={handleToggleCalendar}
         aria-expanded="false"
-        style={{ backgroundColor: '#57412E', minWidth: '100%' }}>
+        style={{ backgroundColor: '#57412E', minWidth: '80%' }}>
         Calendario
       </button>
       {showCalendar && (
