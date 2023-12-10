@@ -23,6 +23,9 @@ const typeDefs = gql`
   }
 
   type Registro {
+    nombre: String!
+    rut: String!
+    contacto: String!
     email: String!
     password: String!
   }
@@ -45,7 +48,7 @@ const typeDefs = gql`
     agregarNoticia(titulo: String!, resumen: String!, fecha: String!): Noticia
     agregarReserva(bookID: String!, deliveryDate: String!, requestType: String!): Reserva
     agregarRegistro(email: String!, password: String!): Registro
-    agregarSesion(email: String!, password: String!): Sesion
+    agregarSesion(nombre: String!, rut: String!, contacto: String!, email: String!, password: String!): Sesion
   }
 `;
 

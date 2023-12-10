@@ -14,7 +14,7 @@ router.get('/api/usuarios', async (req, res) => {
 
 router.post('/api/usuarios', async (req, res) => {
   console.log('Cuerpo de la solicitud registro:', req.body);
-  const { email, password } = req.body;
+  const { nombre, rut, contacto, email, password } = req.body;
 
   // Verificar si todas las propiedades están presentes en req.body
   if (!email || !password) {
@@ -23,6 +23,9 @@ router.post('/api/usuarios', async (req, res) => {
 
   try {
     const nuevoRegistro= new Registro({
+      nombre,
+      rut,
+      contacto,
       email,
       password,
     });

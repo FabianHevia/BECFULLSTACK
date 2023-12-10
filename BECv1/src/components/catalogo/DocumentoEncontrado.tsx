@@ -78,6 +78,8 @@ const DocumentoEncontrado: React.FC = () => {
         <option value="Ficción">Ficción</option>
         <option value="Drama">Drama</option>
         <option value="Ciencia Ficción">Ciencia Ficción</option>
+        <option value="Ciencia">Ciencia</option>
+        <option value="Filosofía">Filosofía</option>
         {/* ... Otras opciones ... */}
       </select>
 

@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 
 const usuarioSchema = new mongoose.Schema({
+    nombre: String,
+    rut: String,
+    contacto: String,
     email: {
         type: String,
         required: true,

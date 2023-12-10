@@ -7,7 +7,10 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState('');
   const [rut, setRut] = useState('');
   const [nombre, setNombre] = useState('');
-  const [numero, setNumero] = useState('');
+  const [contacto, setContacto] = useState('');
+  const [loading, setLoading] = useState(false); // Estado para controlar la pantalla de carga
+  const [showMessage, setShowMessage] = useState(false); // Estado para controlar la visibilidad del mensaje
+  const [message, setMessage] = useState('');
 
   const handleEmailChange1 = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -32,29 +35,47 @@ const Login: React.FC = () => {
     setNombre(e.target.value);
   };
 
-  const handleNumeroChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNumero(e.target.value);
+  const handleContactoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setContacto(e.target.value);
   };
   const handleRegistrar = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    setLoading(true);
     // Aquí puedes utilizar los valores de email y password
     console.log('Email:', email);
     console.log('Password:', password);
     console.log('Rut:', rut);
     console.log('Nombre:', nombre);
-    console.log('Numero:', numero);
+    console.log('contacto:', contacto);
    
     try {
       const response = await axios.post('http://localhost:3000/api/usuarios', {
+        nombre,
+        rut,
+        contacto,
         email,
         password,
       });
 
       // Aquí puedes manejar la respuesta del servidor
       console.log('Respuesta del servidor:', response.data);
+
+      // Mostrar mensaje de éxito
+      setMessage('Registro exitoso');
+      setShowMessage(true);
     } catch (error) {
+
+      setMessage('Error al registrar');
+      setShowMessage(true);
       // Manejar errores en la solicitud
       console.error('Error:', error);
+    } finally {
+      // Ocultar la pantalla de carga después de un tiempo (por ejemplo, 2 segundos)
+        setTimeout(() => {
+        setLoading(false);
+        setShowMessage(false);
+      }, 2000);
     }
   };
   const handleInicioSesion = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -69,7 +90,7 @@ const Login: React.FC = () => {
 
       // Verificar si el email y la contraseña coinciden con los datos de la API
       const users = response.data;
-      const user = users.find((user: any) => user.email === email && user.password === password);
+      const user = users.find((user: any) => user.nombre === nombre && user.rut === rut && user.contacto === contacto && user.email === email && user.password === password);
 
       if (user) {
         console.log('¡Inicio de sesión exitoso para el usuario:', user.email);
@@ -131,18 +152,25 @@ const Login: React.FC = () => {
         </div>
       </div>
     </form>
-            <form onSubmit={handleRegistrar}>
-                <div className="modal fade" id="registroModal" tabIndex={-1} data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                  <div className="modal-dialog">
-                    <div className="modal-content">
-                      <div className="modal-header">
-                        <h1 className="modal-title fs-5 d-flex mx-auto mt-5 mb-5" id="staticBackdropLabel" style={{ fontWeight: 'bold'}}>Registro</h1>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div className="modal-body">
+
+              <div className="modal fade" id="registroModal" tabIndex={-1} data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div className="modal-dialog">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h1 className="modal-title fs-5 d-flex mx-auto mt-5 mb-5" id="staticBackdropLabel" style={{ fontWeight: 'bold'}}>Registro</h1>
+                  <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div className="modal-body">
+                  {loading && <div className="loading-screen">Cargando...</div>}
+                  {showMessage && (
+                    <div className="message-container">
+                      <p className={message.includes('Error') ? 'error-message' : 'success-message'}>{message}</p>
+                    </div>
+                  )}
+                  {!loading && !showMessage && (
+                    <form onSubmit={handleRegistrar}>
                       <div className="form-floating">
                       <p style={{ fontSize:'16px' }}>Ingresar Nombre Completo</p>
-                        <label></label>
                           <input
                             type="text"
                             className="form-control form-control-lg rounded-4"
@@ -152,7 +180,6 @@ const Login: React.FC = () => {
                       </div>
                       <div className="form-floating">
                       <p style={{ fontSize:'16px' }}>Ingresar Rut</p>
-                        <label></label>
                           <input
                             type="text"
                             className="form-control form-control-lg rounded-4"
@@ -162,17 +189,15 @@ const Login: React.FC = () => {
                       </div>
                       <div className="form-floating">
                       <p style={{ fontSize:'16px' }}>Ingresar Numero de Contacto</p>
-                        <label></label>
                           <input
                             type="text"
                             className="form-control form-control-lg rounded-4"
-                            value={numero} // Asignar el valor de email al campo
-                            onChange={handleNumeroChange}
+                            value={contacto} // Asignar el valor de email al campo
+                            onChange={handleContactoChange}
                           />
                       </div>
                       <div className="form-floating mb-3 mt-3">
                       <p style={{ fontSize:'16px' }}>Ingresar Correo electrónico</p>
-                        <label></label>
                           <input
                             type="text"
                             className="form-control form-control-lg rounded-4"
@@ -182,7 +207,6 @@ const Login: React.FC = () => {
                       </div>
                       <div className="form-floating mb-3">
                       <p style={{ fontSize:'16px' }}>Ingresar Contraseña</p>
-                        <label></label>
                           <input
                             type="password"
                             className="form-control form-control-lg rounded-4"
@@ -190,17 +214,17 @@ const Login: React.FC = () => {
                             onChange={handlePasswordChange2} // Manejar el cambio en el input
                           />
                       </div>
-                      </div>
                       <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                         <button type="submit" className="btn btn-primary">Registrarse</button>
                       </div>
-                    </div>
-                  </div>
+                      </form>
+                    )}
                 </div>
-              </form>
-    </div>
-  );
-};
+              </div>
+            </div>
+          </div>
+        </div>
+      )};
 
 export default Login;
