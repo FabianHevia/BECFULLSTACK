@@ -1,0 +1,20 @@
+.cards2-wrapper {
+    display: flex;
+    overflow-x: auto; /* Permite el scroll horizontal */
+    gap: 20px; /* Espacio entre las tarjetas */
+    padding: 20px; /* Espacio en los extremos del contenedor */
+    scrollbar-width: none; /* Oculta la barra de desplazamiento en Firefox */
+    -ms-overflow-style: none; /* Oculta la barra de desplazamiento en Internet Explorer y Edge */
+  }
+  
+.cards2-wrapper::-webkit-scrollbar {
+    display: none; /* Oculta la barra de desplazamiento en navegadores basados en WebKit (Chrome, Safari) */
+  }
+  
+.carousel-control-prev {
+  margin-left: -40px; /* Ajusta el margen superior de los botones */
+}
+
+.carousel-control-next {
+  margin-right: -40px; /* Ajusta el margen superior de los botones */
+}

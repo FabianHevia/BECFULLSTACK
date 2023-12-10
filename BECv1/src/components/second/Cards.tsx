@@ -1,5 +1,5 @@
 import React from 'react';
-import './Stylecards.css';
+import './Cards.css';
 import { Link } from 'react-router-dom'; // Importa Link desde react-router-dom
 
 interface CardAnimate {

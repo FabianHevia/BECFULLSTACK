@@ -29,7 +29,7 @@ const CatalogoPage: React.FC = () => {
             </div>
             <hr />
           </div>
-          <div className="col-12 mt-5 mb-5">
+          <div>
             <h1 className="text-color">Catalogo</h1>
             <Slider />
         </div>

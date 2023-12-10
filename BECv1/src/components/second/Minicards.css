@@ -11,11 +11,11 @@
     display: none; /* Oculta la barra de desplazamiento en navegadores basados en WebKit (Chrome, Safari) */
   }
   
-.card2:hover {
+.MIniIMG:hover {
     transform: scale(1.04); 
   }
 
-.card2 {
+.MIniIMG {
     transition: transform 0.3s;
     flex: 0 0 auto;
     width: 300px;
@@ -26,7 +26,7 @@
     border-radius: 0;
 }
   
-.card2 img {
+.MIniIMG img {
     max-height: 70%;
     height: 200px;
 }

@@ -1,34 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './Styleslider.css';
-import { Link } from 'react-router-dom';
-
-const LocationState= {
-  id: '12345',
-  titulo: 'El Origen de las Especies',
-  autor: 'Angelica',
-  tipo: 'Novela',
-  categoria: 'Libro Teórico',
-  img: 'El_Origen_de_las_Especies.jpg'}
-
-const Card2 = ({ imageURL, title }: { imageURL: string; title: string; }) => {
-  const handleClick = () => {
-    window.scrollTo(0, 10); // Scroll hacia arriba al hacer clic
-  };
-  return (
-    <div className="card2 head-slider">
-      <img src={imageURL} className="card-img-top"/>
-      <div className="card-body body-slider d-flex flex-column justify-content-between">
-        <h5 className="card-title">{title}</h5>
-        <p className="card-text">
-        </p>
-        <Link to='/reservas' state= { LocationState } className="btn btn-primary" onClick={handleClick}>Reservar</Link>
-      </div>
-    </div>
-  );
-};
+import MiniCard from './Minicards';
+import './Slider.css';
+import axios from 'axios';
 
 const Slider: React.FC = () => {
+  const [bookList, setBookList] = useState<Book[]>([]);
+  const [filteredBooks1, setFilteredBooks1] = useState<Book[]>([]);
+  const [filteredBooks2, setFilteredBooks2] = useState<Book[]>([]);
+
   const handlePrevButtonClick = () => {
     const cardsWrapper = document.querySelector<HTMLElement>('.cards2-wrapper');
     if (cardsWrapper) {
@@ -84,34 +64,101 @@ const Slider: React.FC = () => {
     };
   }, []);
 
-  return (
-    <div id="demo" className="carousel slide" data-bs-ride="carousel">
-      <div className="carousel-indicators">
-        <button type="button" data-bs-target="#demo" data-bs-slide-to="0" className="active"></button>
-      </div>
+  useEffect(() => {
+    const fetchBooks = async () => {
+      try {
+        const response = await axios.get<Book[]>('http://localhost:3000/api/documentos');
+        const booksData = response.data; // Datos de todos los libros obtenidos de la API
+        setBookList(booksData); // Almacena los datos de todos los libros en el estado 'bookList'
 
-      {/* The slideshow/carousel */}
-      <div className="carousel-inner">
-        <div className="carousel-item active">
-          <div className="cards2-wrapper">
-            <Card2 imageURL="CuentosDeOtono.webp" title="Cuentos De Otoño" />
-            <Card2 imageURL="Elzorro.webp" title="El Zorro en el bosque"/>
-            <Card2 imageURL="MatarAunRuisenor.webp" title="Matar a un ruiseñor" />
-            <Card2 imageURL="NaranjaMecanica.jpg" title="La Naranja Mecanica" />
-            <Card2 imageURL="HerederadeFuego.webp" title="Heredera de Fuego" />
-            <Card2 imageURL="Atlantis.jpg" title="Atlantis"/>
-            <Card2 imageURL="Atoeas.jpg" title="A Teaspoon of Earth and Sea" />
-            <Card2 imageURL="libro-imprenta-lima.jpg" title="Los hombres del norte"/>
+        // Filtrar los libros por el tipo "Novela"
+        const filteredNovelaBooks = booksData.filter(book => book.type === 'Novela');
+        setFilteredBooks1(filteredNovelaBooks); // Almacena los libros filtrados en el estado 'filteredBooks'
+
+        const filteredTecnicoBooks = booksData.filter(book => book.type === 'Libro Teórico');
+        setFilteredBooks2(filteredTecnicoBooks); // Almacena los libros filtrados en el estado 'filteredBooks'
+
+
+      } catch (error) {
+        console.error('Error al obtener la lista de libros:', error);
+      }
+    };
+
+    fetchBooks();
+  }, []);
+
+  return (
+    <div>
+      <div className="col-12 mt-5 mb-5">
+        <h3 className="text-color">LAS MEJORES NOVELAS</h3>
+        <div id="demo" className="carousel slide" data-bs-ride="carousel">
+          <div className="carousel-indicators">
+            <button type="button" data-bs-target="#demo" data-bs-slide-to="0" className="active"></button>
           </div>
+
+          {/* The slideshow/carousel */}
+          <div className="carousel-inner">
+            <div className="carousel-item active">
+              <div className="cards2-wrapper">
+                {filteredBooks1.map((book, index) => (
+                  <MiniCard
+                  key={index}
+                  id={book._id || ''}
+                  titulo={book.title || ''} // Utiliza el título proporcionado por la API
+                  autor={`${book.author || ''}`} // Información adicional del libro
+                  tipo={`${book.type || ''}`}
+                  categoria={`${book.category || ''}`}
+                  img={book.img || ''} // Utiliza la imagen proporcionada por la API
+                  />
+                  ))}
+              </div>
+            </div>
+          </div>
+
+          <button className="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+            <span className="carousel-control-prev-icon"></span>
+          </button>
+          <button className="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+            <span className="carousel-control-next-icon"></span>
+          </button>
         </div>
       </div>
 
-      <button className="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-        <span className="carousel-control-prev-icon"></span>
-      </button>
-      <button className="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-        <span className="carousel-control-next-icon"></span>
-      </button>
+
+      <div className="col-12 mt-5 mb-5">
+        <h3 className="text-color">LIBROS TEÓRICOS que te VOLARAN la CABEZA</h3>
+        <div id="demo" className="carousel slide" data-bs-ride="carousel">
+          <div className="carousel-indicators">
+            <button type="button" data-bs-target="#demo" data-bs-slide-to="0" className="active"></button>
+          </div>
+
+          {/* The slideshow/carousel */}
+          <div className="carousel-inner">
+            <div className="carousel-item active">
+              <div className="cards2-wrapper">
+                {filteredBooks2.map((book, index) => (
+                  <MiniCard
+                  key={index}
+                  id={book._id || ''}
+                  titulo={book.title || ''} // Utiliza el título proporcionado por la API
+                  autor={`${book.author || ''}`} // Información adicional del libro
+                  tipo={`${book.type || ''}`}
+                  categoria={`${book.category || ''}`}
+                  img={book.img || ''} // Utiliza la imagen proporcionada por la API
+                  />
+                  ))}
+              </div>
+            </div>
+          </div>
+
+          <button className="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+            <span className="carousel-control-prev-icon"></span>
+          </button>
+          <button className="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+            <span className="carousel-control-next-icon"></span>
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
