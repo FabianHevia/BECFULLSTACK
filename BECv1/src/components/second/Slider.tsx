@@ -1,16 +1,28 @@
 import React, { useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Styleslider.css';
+import { Link } from 'react-router-dom';
+
+const LocationState= {
+  id: '12345',
+  titulo: 'El Origen de las Especies',
+  autor: 'Angelica',
+  tipo: 'Novela',
+  categoria: 'Libro Teórico',
+  img: 'El_Origen_de_las_Especies.jpg'}
 
 const Card2 = ({ imageURL, title }: { imageURL: string; title: string; }) => {
+  const handleClick = () => {
+    window.scrollTo(0, 10); // Scroll hacia arriba al hacer clic
+  };
   return (
-    <div className="card2">
+    <div className="card2 head-slider">
       <img src={imageURL} className="card-img-top"/>
-      <div className="card-body">
+      <div className="card-body body-slider d-flex flex-column justify-content-between">
         <h5 className="card-title">{title}</h5>
         <p className="card-text">
         </p>
-        <button className="btn btn-primary">Enter</button>
+        <Link to='/reservas' state= { LocationState } className="btn btn-primary" onClick={handleClick}>Reservar</Link>
       </div>
     </div>
   );

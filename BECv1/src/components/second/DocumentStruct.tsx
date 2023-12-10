@@ -7,7 +7,18 @@ interface DocumentStructProps {
   documents: DocumentData[];
 }
 
+const LocationState= {
+  id: '12345',
+  titulo: 'El Origen de las Especies',
+  autor: 'Angelica',
+  tipo: 'Novela',
+  categoria: 'Libro Teórico',
+  img: 'El_Origen_de_las_Especies.jpg'}
+
 const DocumentStruct: React.FC<DocumentStructProps> = ({ documents }) => {
+  const handleClick = () => {
+    window.scrollTo(0, 10); // Scroll hacia arriba al hacer clic
+  };
   return (
     <div className="container mt-4 mb-2">
       <div className="table-responsive rounded-4 border border-3 border-black border-opacity-75" style={{ maxHeight: '300px', backgroundColor: '#ffff' }}>
@@ -29,7 +40,7 @@ const DocumentStruct: React.FC<DocumentStructProps> = ({ documents }) => {
               <td className="text-center">{doc.type}</td>
               <td className="text-center">{doc.category}</td>
               <td className="text-center">
-                <Link to={'/reservas'} className="btn btn-primary">Reservar</Link>
+              <Link to='/reservas' state= { LocationState } className="btn btn-primary" onClick={handleClick}>Reservar</Link>
               </td>
             </tr>
           ))}

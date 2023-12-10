@@ -27,15 +27,18 @@
 }
   
 .card2 img {
-    max-height: 80%;
-    min-width: 100%;
-    min-height: 200px;
+    max-height: 70%;
+    height: 200px;
 }
   
     
   
-@media (min-width: 768px) {
+@media (max-width: 768px) {
     .card2 img {
-        height: 11em;
+        height: 50%;
+    }
+    .head-slider {
+      height: 25vh;
+      min-width: 30%;
     }
 }

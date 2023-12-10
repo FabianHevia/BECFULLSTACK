@@ -6,14 +6,27 @@ import axios, { AxiosResponse } from 'axios';
 import './Home.css';
 
 const MyCarousel: React.FC = () => {
+  const [bookList, setBookList] = useState<Book[]>([]);
+  
   useEffect(() => {
-    const myCarousel = document.getElementById('demo');
+    const fetchBooks = async () => {
+      try {
+        const response = await axios.get<Book[]>('http://localhost:3000/api/documentos');
+        const booksData = response.data; // Datos de todos los libros obtenidos de la API
+        setBookList(booksData); // Almacena los datos de todos los libros en el estado 'bookList'
 
-    if (myCarousel) {
-      const carousel = new Carousel(myCarousel, {
-        interval: 2000,
-      });
-    }
+        const myCarousel = document.getElementById('demo');
+        if (myCarousel) {
+          const carousel = new Carousel(myCarousel, {
+            interval: 2000,
+          });
+        }
+      } catch (error) {
+        console.error('Error al obtener la lista de libros:', error);
+      }
+    };
+
+    fetchBooks();
   }, []);
 
   return (
@@ -63,47 +76,65 @@ const MyCarousel: React.FC = () => {
         <div className="row">
           <div className="col-md-4 col-xs-12 mb-4 d-flex justify-content-center">
             <Cards
-              link="Atlantis.jpg"
-              title="Atlantis: Proyecto Tarsis"
-              information="José Enrique Serrano Expósito"
+              id={bookList[21]?._id || ''}
+              titulo={bookList[21]?.title || ''} // Utiliza el título proporcionado por la API
+              autor={`${bookList[21]?.author || ''}`} // Información adicional del libro
+              tipo={`${bookList[21]?.type || ''}`}
+              categoria={`${bookList[21]?.category || ''}`}
+              img={bookList[21]?.img || ''} // Utiliza la imagen proporcionada por la API
             />
           </div>
-          <div className="adjust col-md-4 col-xs-12 mb-4 d-flex justify-content-center">
+          <div className="col-md-4 col-xs-12 mb-4 d-flex justify-content-center">
             <Cards
-              link="CuentosDeOtono.webp"
-              title="Cuentos de Otoño"
-              information="José J. de Olañeta"
+              id={bookList[9]?._id || ''}
+              titulo={bookList[9]?.title || ''} // Utiliza el título proporcionado por la API
+              autor={`${bookList[9]?.author || ''}`} // Información adicional del libro
+              tipo={`${bookList[9]?.type || ''}`}
+              categoria={`${bookList[9]?.category || ''}`}
+              img={bookList[9]?.img || ''} // Utiliza la imagen proporcionada por la API
             />
           </div>
-          <div className="adjust col-md-4 col-xs-12 mb-4 d-flex justify-content-center">
+          <div className="col-md-4 col-xs-12 mb-4 d-flex justify-content-center">
             <Cards
-              link="HerederadeFuego.webp"
-              title="Heredera de Fuego"
-              information="Sarah J. Maas"
+              id={bookList[4]?._id || ''}
+              titulo={bookList[4]?.title || ''} // Utiliza el título proporcionado por la API
+              autor={`${bookList[4]?.author || ''}`} // Información adicional del libro
+              tipo={`${bookList[4]?.type || ''}`}
+              categoria={`${bookList[4]?.category || ''}`}
+              img={bookList[4]?.img || ''} // Utiliza la imagen proporcionada por la API
             />
           </div>
           <div className="row">
-            <div className="adjust col-md-4 col-xs-12 mb-4 d-flex justify-content-center">
-              <Cards
-                link="MatarAunRuisenor.webp"
-                title="Matar a un Ruiseñor"
-                information="Harper Lee"
-              />
-            </div>
-            <div className="adjust col-md-4 col-xs-12 mb-4 d-flex justify-content-center">
-              <Cards
-                link="NaranjaMecanica.jpg"
-                title="La Naranja Mecanica"
-                information="Anthony Burges"
-              />
-            </div>
-            <div className="adjust col-md-4 col-xs-12 mb-4 d-flex justify-content-center">
-              <Cards
-                link="Elzorro.webp"
-                title="El Zorro en el bosque"
-                information="Salma Dubois"
-              />
-            </div>
+          <div className="col-md-4 col-xs-12 mb-4 d-flex justify-content-center">
+            <Cards
+              id={bookList[18]?._id || ''}
+              titulo={bookList[18]?.title || ''} // Utiliza el título proporcionado por la API
+              autor={`${bookList[18]?.author || ''}`} // Información adicional del libro
+              tipo={`${bookList[18]?.type || ''}`}
+              categoria={`${bookList[18]?.category || ''}`}
+              img={bookList[18]?.img || ''} // Utiliza la imagen proporcionada por la API
+            />
+          </div>
+          <div className="col-md-4 col-xs-12 mb-4 d-flex justify-content-center">
+            <Cards
+              id={bookList[10]?._id || ''}
+              titulo={bookList[10]?.title || ''} // Utiliza el título proporcionado por la API
+              autor={`${bookList[10]?.author || ''}`} // Información adicional del libro
+              tipo={`${bookList[10]?.type || ''}`}
+              categoria={`${bookList[10]?.category || ''}`}
+              img={bookList[10]?.img || ''} // Utiliza la imagen proporcionada por la API
+            />
+          </div>
+          <div className="col-md-4 col-xs-12 mb-4 d-flex justify-content-center">
+            <Cards
+              id={bookList[20]?._id || ''}
+              titulo={bookList[20]?.title || ''} // Utiliza el título proporcionado por la API
+              autor={`${bookList[20]?.author || ''}`} // Información adicional del libro
+              tipo={`${bookList[20]?.type || ''}`}
+              categoria={`${bookList[20]?.category || ''}`}
+              img={bookList[20]?.img || ''} // Utiliza la imagen proporcionada por la API
+            />
+          </div>
           </div>
           <div className="mb-5" ></div>
         </div>

@@ -46,7 +46,7 @@ const DocumentoEncontrado: React.FC = () => {
   // Llamar a la función de filtro cuando se cambie la categoría, autor o tipo seleccionado
   useEffect(() => {
     applyFilters();
-  }, [selectedCategory, selectedAuthor, selectedType]);
+  }, [selectedCategory, selectedAuthor, selectedType, authorInput, tituloInput]);
 
   useEffect(() => {
     const fetchData = async () => {

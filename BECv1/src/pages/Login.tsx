@@ -5,6 +5,9 @@ import axios from 'axios';
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [rut, setRut] = useState('');
+  const [nombre, setNombre] = useState('');
+  const [numero, setNumero] = useState('');
 
   const handleEmailChange1 = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -20,11 +23,26 @@ const Login: React.FC = () => {
   const handlePasswordChange2 = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
+
+  const handleRutChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setRut(e.target.value);
+  };
+
+  const handleNombreChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNombre(e.target.value);
+  };
+
+  const handleNumeroChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNumero(e.target.value);
+  };
   const handleRegistrar = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Aquí puedes utilizar los valores de email y password
     console.log('Email:', email);
     console.log('Password:', password);
+    console.log('Rut:', rut);
+    console.log('Nombre:', nombre);
+    console.log('Numero:', numero);
    
     try {
       const response = await axios.post('http://localhost:3000/api/usuarios', {
@@ -61,7 +79,6 @@ const Login: React.FC = () => {
           email: user.email,
           password: user.password,
         });
-
         */
       } else {
         console.log('¡Credenciales incorrectas!');
@@ -123,6 +140,36 @@ const Login: React.FC = () => {
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div className="modal-body">
+                      <div className="form-floating">
+                      <p style={{ fontSize:'16px' }}>Ingresar Nombre Completo</p>
+                        <label></label>
+                          <input
+                            type="text"
+                            className="form-control form-control-lg rounded-4"
+                            value={nombre} // Asignar el valor de email al campo
+                            onChange={handleNombreChange} // Manejar el cambio en el input
+                          />
+                      </div>
+                      <div className="form-floating">
+                      <p style={{ fontSize:'16px' }}>Ingresar Rut</p>
+                        <label></label>
+                          <input
+                            type="text"
+                            className="form-control form-control-lg rounded-4"
+                            value={rut} // Asignar el valor de email al campo
+                            onChange={handleRutChange} // Manejar el cambio en el input
+                          />
+                      </div>
+                      <div className="form-floating">
+                      <p style={{ fontSize:'16px' }}>Ingresar Numero de Contacto</p>
+                        <label></label>
+                          <input
+                            type="text"
+                            className="form-control form-control-lg rounded-4"
+                            value={numero} // Asignar el valor de email al campo
+                            onChange={handleNumeroChange}
+                          />
+                      </div>
                       <div className="form-floating mb-3 mt-3">
                       <p style={{ fontSize:'16px' }}>Ingresar Correo electrónico</p>
                         <label></label>

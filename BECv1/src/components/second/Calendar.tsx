@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker from 'react-datepicker';
-import './Calendar.css';
 // Asumiendo que Calendario es un modelo de datos
 interface DropdownCalendarioProps {
   onDateChange: (date: Date | null) => void;
@@ -25,7 +24,7 @@ const DropdownCalendario: React.FC<DropdownCalendarioProps> = ({ onDateChange })
   return (
     <div className="dropdown">
       <button
-        className="btn btn-secondary"
+        className="btn btn-secondary dropdown-toggle"
         type="button"
         id="dropdownCalendario"
         onClick={handleToggleCalendar}
@@ -35,9 +34,15 @@ const DropdownCalendario: React.FC<DropdownCalendarioProps> = ({ onDateChange })
       </button>
       {showCalendar && (
         <div
-          className="dropdown-menu show"
+          className="dropdown-menu show d-flex justify-content-center align-items-center"
           aria-labelledby="dropdownCalendario"
-          style={{ minWidth: '100%' }}>
+          style={{
+            minWidth: '80%',
+            position: 'absolute',
+            top: '100%',
+            left: '50%',
+            transform: 'translateX(-50%)',
+          }}>
           <div className="p-2">
             <DatePicker
               className="form-control"

@@ -3,6 +3,16 @@ import './Reservas.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import DropdownCalendario from '../components/second/Calendar';
 import axios from 'axios';
+import { useLocation } from 'react-router-dom';
+
+interface LocationState {
+  id: string;
+  titulo: string;
+  autor: string;
+  tipo: string;
+  categoria: string;
+  img: string;
+}
 
 import { generarCodigoAleatorio } from '../server/controller/reservaCode';
 
@@ -10,6 +20,10 @@ const Reservas: React.FC = () => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [ingresarID, setIngresarID] = useState<string>('');
   const [opcionSeleccionada, setOpcionSeleccionada] = useState('');
+  const location = useLocation();
+  const state = location.state as LocationState;
+
+  const { id, titulo, autor, tipo, categoria, img } = state;
 
   const handleReservaClick = async () => {
     if (selectedDate && ingresarID) {
@@ -101,7 +115,7 @@ const Reservas: React.FC = () => {
           <div className="col-lg-6 col-md-12 animated">
             <div className="contenedor-imagen-muestra">
               <img 
-                  src="Algoritmos Fundamentales.jpg" 
+                  src={img}
                   className="border border-black border-2 rounded-3 imagen-muestra"
                   style={{ maxHeight:'800px', maxWidth: '600px' }}
               ></img>
@@ -119,14 +133,15 @@ const Reservas: React.FC = () => {
                       <div className="form-outline">
                       <hr className="mx-auto" style={{ maxWidth: '80%' }}/>
                         <div className="form-label" onChange={handleIDChange}>Informacion del libro:
-                          <div className="form-control form-control-lg rounded-4 mx-auto" style={{ maxWidth: '90%' }}>
-                            <p>id:<br></br>
-                            nombre: <br></br>
-                            autor: <br></br>
-                            tipo:<br></br>
-                            categoria:<br></br>
-                            </p>
-                          </div>
+                        <div className="form-control form-control-lg rounded-4 mx-auto" style={{ maxWidth: '90%' }}>
+                          <p>
+                            id: {id}<br />
+                            título: {titulo}<br />
+                            autor: {autor}<br />
+                            tipo: {tipo}<br />
+                            categoría: {categoria}<br />
+                          </p>
+                        </div>
                         </div>
                       </div>
                       <hr className="mx-auto" style={{ maxWidth: '80%' }}/>
@@ -144,8 +159,8 @@ const Reservas: React.FC = () => {
                           Tipo de acción 
                           </button>
                           <ul className="dropdown-menu text-center" aria-labelledby="dropdownMenuButton" style={{ width: '90%', backgroundColor: 'white'}}>
-                            <li><a className="dropdown-item" href="#" onClick={() => handleDropdownSelect('Reserva')}>Reserva</a></li>
-                            <li><a className="dropdown-item" href="#" onClick={() => handleDropdownSelect('Prestamo')}>Prestamo</a></li>
+                            <li><a className="dropdown-item" href="/" onClick={(e) => { e.preventDefault(); handleDropdownSelect('Reserva'); }}>Reserva</a></li>
+                            <li><a className="dropdown-item" href="/" onClick={(e) => { e.preventDefault(); handleDropdownSelect('Prestamo'); }}>Prestamo</a></li>
                           </ul>
                         </div>
                       </div>
