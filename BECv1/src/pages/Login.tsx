@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import './Login.css';
 import axios from 'axios';
 
+import Loading from '../components/second/routes/Loading';
+import Error from '../components/second/routes/Unsuccess';
+import Success from '../components/second/routes/Success';
+
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -11,6 +15,7 @@ const Login: React.FC = () => {
   const [loading, setLoading] = useState(false); // Estado para controlar la pantalla de carga
   const [showMessage, setShowMessage] = useState(false); // Estado para controlar la visibilidad del mensaje
   const [message, setMessage] = useState('');
+  const [messageType, setMessageType] = useState<'success' | 'error' | ''>(''); // Nuevo estado para controlar el tipo de mensaje
 
   const handleEmailChange1 = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -42,6 +47,7 @@ const Login: React.FC = () => {
     e.preventDefault();
 
     setLoading(true);
+    setMessageType('');
     // Aquí puedes utilizar los valores de email y password
     console.log('Email:', email);
     console.log('Password:', password);
@@ -60,22 +66,25 @@ const Login: React.FC = () => {
 
       // Aquí puedes manejar la respuesta del servidor
       console.log('Respuesta del servidor:', response.data);
-
+      setMessage('');
       // Mostrar mensaje de éxito
-      setMessage('Registro exitoso');
+      setMessageType('success');
       setShowMessage(true);
     } catch (error) {
-
-      setMessage('Error al registrar');
+      setMessage('');
+      setMessageType('error');
       setShowMessage(true);
       // Manejar errores en la solicitud
       console.error('Error:', error);
     } finally {
-      // Ocultar la pantalla de carga después de un tiempo (por ejemplo, 2 segundos)
+        setMessage('');
         setTimeout(() => {
         setLoading(false);
+      }, 45);
+        setMessage('');
+        setTimeout(() => {
         setShowMessage(false);
-      }, 2000);
+      }, 2500);
     }
   };
   const handleInicioSesion = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -94,20 +103,21 @@ const Login: React.FC = () => {
 
       if (user) {
         console.log('¡Inicio de sesión exitoso para el usuario:', user.email);
-
-        // Enviar confirmación de credenciales al endpoint '/api/sesion'
-        /*await axios.post('http://localhost:3000/api/sesion', {
-          email: user.email,
-          password: user.password,
-        });
-        */
+        setMessageType('success');
+        setShowMessage(true);
       } else {
         console.log('¡Credenciales incorrectas!');
-        // Manejar credenciales incorrectas, por ejemplo, mostrar un mensaje al usuario.
+        setMessage('Credenciales incorrectas');
       }
     } catch (error) {
       console.error('Error:', error);
-      // Manejar errores, por ejemplo, mostrar un mensaje de error al usuario.
+      setMessageType('error');
+      setShowMessage(true);
+    } finally {
+      setTimeout(() => {
+        setLoading(false);
+        setShowMessage(true);
+      }, 5000);
     }
   };
 
@@ -153,7 +163,7 @@ const Login: React.FC = () => {
       </div>
     </form>
 
-              <div className="modal fade" id="registroModal" tabIndex={-1} data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div className="modal fade" id="registroModal" tabIndex={-1} data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div className="modal-dialog">
               <div className="modal-content">
                 <div className="modal-header">
@@ -161,12 +171,21 @@ const Login: React.FC = () => {
                   <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div className="modal-body">
-                  {loading && <div className="loading-screen">Cargando...</div>}
+                  {loading && <div className="loading-screen position-absolute top-50 start-50 translate-middle"><Loading /></div>}
                   {showMessage && (
+                    messageType === 'success' ? (
+                    <Success header="Se ha registrado con exito" message="Bienvenido a BEC"/>
+                ) : messageType === 'error' ? (
+                  <div className="row">
+                    <div className="col-12">
+                    <Error header="Error al registrarse" message="Porfavor, vuelva a intentarlo"/>
+                  </div>
+                  </div>
+                ) : null
+                          )}
                     <div className="message-container">
                       <p className={message.includes('Error') ? 'error-message' : 'success-message'}>{message}</p>
                     </div>
-                  )}
                   {!loading && !showMessage && (
                     <form onSubmit={handleRegistrar}>
                       <div className="form-floating">
