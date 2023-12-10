@@ -43,6 +43,7 @@ const Login: React.FC = () => {
   const handleContactoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setContacto(e.target.value);
   };
+  
   const handleRegistrar = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -87,23 +88,23 @@ const Login: React.FC = () => {
       }, 2500);
     }
   };
+
   const handleInicioSesion = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    console.log('Email:', email);
-    console.log('Password:', password);
-
+  
     try {
-      // Obtener los datos del usuario de la API '/api/usuarios'
-      const response = await axios.get('http://localhost:3000/api/usuarios');
-
-      // Verificar si el email y la contraseña coinciden con los datos de la API
-      const users = response.data;
-      const user = users.find((user: any) => user.nombre === nombre && user.rut === rut && user.contacto === contacto && user.email === email && user.password === password);
-
-      if (user) {
-        console.log('¡Inicio de sesión exitoso para el usuario:', user.email);
+      const response = await axios.post('http://localhost:3000/api/Inicio', {
+        email,
+        password,
+      });
+  
+      const token = response.data.token;
+  
+      if (token) {
+        localStorage.setItem('token', token);
+        console.log('¡Inicio de sesión exitoso para el usuario:', email);
         setMessageType('success');
+        setMessage('');
         setShowMessage(true);
       } else {
         console.log('¡Credenciales incorrectas!');
@@ -112,14 +113,21 @@ const Login: React.FC = () => {
     } catch (error) {
       console.error('Error:', error);
       setMessageType('error');
+      setMessage('');
       setShowMessage(true);
     } finally {
       setTimeout(() => {
+        setMessage('');
         setLoading(false);
+      }, 45);
+      setTimeout(() => {
+        setLoading(false);
+        setMessage('');
         setShowMessage(true);
-      }, 5000);
+      }, 2500);
     }
   };
+  
 
   return (
     <div className="container">

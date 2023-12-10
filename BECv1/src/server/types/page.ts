@@ -30,7 +30,10 @@ const typeDefs = gql`
     password: String!
   }
 
-  type Sesion {
+  type Inicio {
+    nombre: String!
+    rut: String!
+    contacto: String!
     email: String!
     password: String!
   }
@@ -40,15 +43,15 @@ const typeDefs = gql`
     noticias: [Noticia]
     reserva: [Reserva]
     registros: [Registro]
-    sesion: [Sesion]
+    inicio: [Inicio]
   }
 
   type Mutation {
     agregarDocumento(title: String!, author: String!, type: String!, category: String!): Documento
     agregarNoticia(titulo: String!, resumen: String!, fecha: String!): Noticia
     agregarReserva(bookID: String!, deliveryDate: String!, requestType: String!): Reserva
-    agregarRegistro(email: String!, password: String!): Registro
-    agregarSesion(nombre: String!, rut: String!, contacto: String!, email: String!, password: String!): Sesion
+    agregarRegistro(nombre: String!, rut: String!, contacto: String!, email: String!, password: String!): Registro
+    agregarInicio(nombre: String!, rut: String!, contacto: String!, email: String!, password: String!): Inicio
   }
 `;
 

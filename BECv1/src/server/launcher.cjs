@@ -29,8 +29,8 @@ const reservaApi = require('./apis/reservaApi.cjs');
 const { registrosQueryResolver, agregarRegistroMutationResolver } = require('./resolvers/registroResolver.cjs');
 const registroApi = require('./apis/registroApi.cjs');
 
-//Login
-const { sesionQueryResolver, agregarSesionMutationResolver } = require('./resolvers/sesionResolver.cjs');
+//Sesion
+const { inicioQueryResolver, agregarInicioMutationResolver } = require('./resolvers/sesionResolver.cjs');
 const sesionApi = require('./apis/sesionApi.cjs');
 
 const schema = makeExecutableSchema({
@@ -41,14 +41,14 @@ const schema = makeExecutableSchema({
       documentos: documentosQueryResolver,
       reserva: reservaQueryResolver,
       registros: registrosQueryResolver,
-      sesion: sesionQueryResolver,
+      inicio: inicioQueryResolver,
     },
     Mutation: {
       agregarNoticia: agregarNoticiaMutationResolver,
       agregarDocumento: agregarDocumentoMutationResolver,
       agregarReserva: agregarReservaMutationResolver,
       agregarRegistro: agregarRegistroMutationResolver,
-      agregarSesion: agregarSesionMutationResolver,
+      agregarInicio: agregarInicioMutationResolver,
     },
   },
 });

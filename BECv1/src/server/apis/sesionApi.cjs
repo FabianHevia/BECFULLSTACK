@@ -1,38 +1,40 @@
 const express = require('express');
 const router = express.Router();
-const Sesion = require('../models/sesionModelo.cjs');
-  
-router.get('/api/sesion', async (req, res) => {
+const Inicio = require('../models/sesionModelo.cjs');
+
+// Obtener todas las registro
+router.get('/api/inicio', async (req, res) => {
   try {
-    const sesiones = await Sesion.find();
-    res.json(sesiones);
+    const inicio = await Inicio.find();
+    res.json(inicio);
   } catch (error) {
-    res.status(500).json({ message: 'Error al obtener las sesiones' });
+    res.status(500).json({ message: 'Error al obtener las registros' });
   }
 });
 
-router.post('/api/sesion', async (req, res) => {
-    console.log('Cuerpo de la solicitud sesion:', req.body);
-    const { email, password } = req.body;
-  
-    try {
-      const usuario = await Sesion.findOne({ email });
-  
-      if (!usuario) {
-        return res.status(404).json({ message: 'Credenciales inválidas' });
-      }
-  
-      const match = await bcrypt.compare(password, usuario.password);
-      if (!match) {
-        return res.status(401).json({ message: 'Credenciales inválidas' });
-      }
-  
-      // Aquí las credenciales son correctas, puedes generar un token JWT para autenticación, o responder con éxito, dependiendo de tu lógica de aplicación.
-  
-      res.json({ message: 'Inicio de sesión exitoso' });
-    } catch (error) {
-      res.status(500).json({ message: 'Error al validar el inicio de sesión' });
-    }
-  });
-  
+router.post('/api/inicio', async (req, res) => {
+  console.log('Cuerpo de la solicitud registro:', req.body);
+  const { nombre, rut, contacto, email, password } = req.body;
+
+  // Verificar si todas las propiedades están presentes en req.body
+  if (!email || !password) {
+    return res.status(400).json({ message: 'Faltan datos requeridos para el registro' });
+  }
+
+  try {
+    const nuevoInicio= new Inicio({
+      nombre,
+      rut,
+      contacto,
+      email,
+      password,
+    });
+
+    const InicioValidado = await nuevoInicio.save();
+    res.json(InicioValidado);
+  } catch (error) {
+    res.status(500).json({ message: 'Error al validar el registro' });
+  }
+});
+
 module.exports = router;

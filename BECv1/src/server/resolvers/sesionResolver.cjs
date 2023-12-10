@@ -1,27 +1,32 @@
-const { Sesion } = require('../models/sesionModelo.cjs');
+const { Inicio } = require('../models/sesionModelo.cjs');
 
-const sesionQueryResolver = async () => {
-  try {
-    const usuarios = await Sesion.find({}, 'email, password');
-    return usuarios;
-  } catch (error) {
-    throw new Error('Error al obtener los usuarios');
-  }
-};
-
-const agregarSesionMutationResolver = async (_, args) => {
-  try {
-    const { email, password } = args;
-    const nuevoSesion = new Sesion({ email, password });
+const inicioQueryResolver = async () => {
+    try {
+      const inicio = await Inicio.find({}, 'nombre, rut, contacto, email, password');
+      return inicio;
+    } catch (error) {
+      throw new Error('Error al obtener los registros');
+    }
+  };
   
-    const usuarioGuardado = await nuevoSesion.save();
-    return usuarioGuardado;
-  } catch (error) {
-    throw new Error('Error al guardar el usuario');
-  }
-};
-
+  const agregarInicioMutationResolver  = async (_, args) => {
+    try {
+      const nuevoInicio = new Inicio({
+        nombre: args.nombre,
+        rut: args.rut,
+        contacto: args.contacto,
+        email: args.email,
+        password: args.password,
+      });
+  
+      const inicioGuardado = await nuevoInicio.save();
+      return inicioGuardado;
+    } catch (error) {
+      throw new Error('Error al guardar el registro');
+    }
+  };
+  
 module.exports = { 
-    sesionQueryResolver, 
-    agregarSesionMutationResolver 
+  inicioQueryResolver, 
+  agregarInicioMutationResolver 
 };

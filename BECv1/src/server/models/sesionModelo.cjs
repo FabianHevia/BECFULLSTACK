@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 
 const usuarioSchema = new mongoose.Schema({
+    nombre: String,
+    rut: String,
+    contacto: String,
     email: {
         type: String,
         required: true,
@@ -23,6 +26,6 @@ usuarioSchema.pre('save', async function (next) {
     }
 });
 
-const Sesion = mongoose.model('Sesion', usuarioSchema);
+const Inicio = mongoose.model('Inicio', usuarioSchema);
 
-module.exports = Sesion;
+module.exports = Inicio;
