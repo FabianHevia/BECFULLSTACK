@@ -18,7 +18,6 @@ import { generarCodigoAleatorio } from '../server/controller/reservaCode';
 
 const Reservas: React.FC = () => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-  const [ingresarID, setIngresarID] = useState<string>('');
   const [opcionSeleccionada, setOpcionSeleccionada] = useState('');
   const location = useLocation();
   const state = location.state as LocationState;
@@ -26,18 +25,22 @@ const Reservas: React.FC = () => {
   const { id, titulo, autor, tipo, categoria, img } = state;
 
   const handleReservaClick = async () => {
-    if (selectedDate && ingresarID) {
-      let fechaReserva = selectedDate.toISOString(); // Obtener la fecha en formato ISO
+    if (selectedDate && id) {
+      // Calcula la fecha de devolución (14 días después de la fecha seleccionada)
+      const fechaReserva = new Date(selectedDate);
+      fechaReserva.setDate(fechaReserva.getDate() + 14)
+
+      let fechaReservaString = selectedDate.toISOString(); // Obtener la fecha en formato ISO
       let idCompra = generarCodigoAleatorio(); // Generar un ID aleatorio inicial
       
-      console.log('bookID:', ingresarID);
-      console.log('deliveryDate:', fechaReserva);
+      console.log('bookID:', id);
+      console.log('deliveryDate:', fechaReservaString);
       console.log('requestType:', idCompra);
 
       try {
         await axios.post('http://localhost:3000/api/reservas', {
-          bookID: ingresarID,
-          deliveryDate: fechaReserva,
+          bookID: id,
+          deliveryDate: fechaReservaString,
           requestType: idCompra,
         });
         
@@ -46,7 +49,7 @@ const Reservas: React.FC = () => {
         console.error('Error al hacer la reserva:', error);
       }
     } else {
-      console.log('Selecciona una fecha e ingresa un ID antes de reservar.');
+      console.log('Selecciona una fecha antes de reservar.');
     }
   };
 
@@ -58,9 +61,6 @@ const Reservas: React.FC = () => {
     setSelectedDate(date);
   };
   
-  const handleIDChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setIngresarID(event.target.value);
-  };
 
   const renderElementosSegunOpcion = () => {
     if (opcionSeleccionada === 'Reserva') {
@@ -132,7 +132,7 @@ const Reservas: React.FC = () => {
                           </div>
                       <div className="form-outline">
                       <hr className="mx-auto" style={{ maxWidth: '80%' }}/>
-                        <div className="form-label" onChange={handleIDChange}>Informacion del libro:
+                        <div className="form-label">Informacion del libro:
                         <div className="form-control form-control-lg rounded-4 mx-auto" style={{ maxWidth: '90%' }}>
                           <p>
                             id: {id}<br />

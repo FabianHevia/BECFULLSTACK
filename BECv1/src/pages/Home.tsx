@@ -5,6 +5,15 @@ import { Noticias } from '../components/second/Noticias';
 import axios, { AxiosResponse } from 'axios';
 import './Home.css';
 
+interface Book {
+  _id: string;
+  title: string;
+  author: string;
+  type?: string;
+  category?: string;
+  img: string;
+}
+
 const MyCarousel: React.FC = () => {
   const [bookList, setBookList] = useState<Book[]>([]);
   

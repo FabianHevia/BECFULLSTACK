@@ -119,7 +119,7 @@ const DocumentoEncontrado: React.FC = () => {
 
       {/* Mostrar la lista de documentos filtrados o mensaje si no hay coincidencias */}
       {filteredDocuments.length > 0 ? (
-        <DocumentStruct documents={filteredDocuments} />
+        <DocumentStruct documents={filteredDocuments}/>
       ) : (
         <div className="container mx-auto" style={{ backgroundColor:'#0000' }}>
           <div className="row">
