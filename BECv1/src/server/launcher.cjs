@@ -21,6 +21,11 @@ const noticiasApi = require('./apis/noticiasApi.cjs');
 const { documentosQueryResolver, agregarDocumentoMutationResolver } = require('./resolvers/documentoResolver.cjs');
 const documentoApi = require('./apis/documentoApi.cjs');
 
+//Prestamo
+
+const { prestamoQueryResolver, agregarPrestamoMutationResolver } = require('./resolvers/prestamoResolvers.cjs');
+const prestamoApi = require('./apis/prestamoApi.cjs');
+
 //Reserva
 const { reservaQueryResolver, agregarReservaMutationResolver } = require('./resolvers/reservaResolver.cjs');
 const reservaApi = require('./apis/reservaApi.cjs');
@@ -42,6 +47,7 @@ const schema = makeExecutableSchema({
       reserva: reservaQueryResolver,
       registros: registrosQueryResolver,
       inicio: inicioQueryResolver,
+      prestamo: prestamoQueryResolver,
     },
     Mutation: {
       agregarNoticia: agregarNoticiaMutationResolver,
@@ -49,6 +55,7 @@ const schema = makeExecutableSchema({
       agregarReserva: agregarReservaMutationResolver,
       agregarRegistro: agregarRegistroMutationResolver,
       agregarInicio: agregarInicioMutationResolver,
+      agregarPrestamo: agregarPrestamoMutationResolver,
     },
   },
 });
@@ -76,6 +83,7 @@ startApolloServer()
     app.use('/', noticiasApi);
     app.use('/', reservaApi);
     app.use('/', registroApi);
+    app.use('/', prestamoApi);
     app.use('/', sesionApi);
 
     module.exports = { schema };

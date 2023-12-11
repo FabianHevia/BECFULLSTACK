@@ -38,12 +38,20 @@ const typeDefs = gql`
     password: String!
   }
 
+  type Prestamo {
+    id: String!
+    usuario: String!
+    fecha: String!
+    plazo: String!
+  }
+
   type Query {
     documentos: [Documento]
     noticias: [Noticia]
     reserva: [Reserva]
     registros: [Registro]
     inicio: [Inicio]
+    prestamo: [Prestamo]
   }
 
   type Mutation {
@@ -52,6 +60,7 @@ const typeDefs = gql`
     agregarReserva(bookID: String!, deliveryDate: String!, requestType: String!): Reserva
     agregarRegistro(nombre: String!, rut: String!, contacto: String!, email: String!, password: String!): Registro
     agregarInicio(nombre: String!, rut: String!, contacto: String!, email: String!, password: String!): Inicio
+    agregarPrestamo(id: String!, usuario: String!, fecha: String!, plazo: String!): Prestamo
   }
 `;
 
