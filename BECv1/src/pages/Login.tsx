@@ -93,19 +93,31 @@ const Login: React.FC = () => {
     e.preventDefault();
   
     try {
-      const response = await axios.post('http://localhost:3000/api/Inicio', {
+      // Verificar credenciales del usuario en la API /api/usuarios
+      const usuarioResponse = await axios.get('http://localhost:3000/api/usuarios', {
         email,
         password,
       });
   
-      const token = response.data.token;
+      // Si las credenciales son correctas, continuar con el inicio de sesión
+      if (usuarioResponse.data.credencialesValidas) {
+        const inicioResponse = await axios.post('http://localhost:3000/api/inicio', {
+          email,
+          password,
+        });
   
-      if (token) {
-        localStorage.setItem('token', token);
-        console.log('¡Inicio de sesión exitoso para el usuario:', email);
-        setMessageType('success');
-        setMessage('');
-        setShowMessage(true);
+        const token = inicioResponse.data.token;
+  
+        if (token) {
+          localStorage.setItem('token', token);
+          console.log('¡Inicio de sesión exitoso para el usuario:', email);
+          setMessageType('success');
+          setMessage('');
+          setShowMessage(true);
+        } else {
+          console.log('¡Credenciales incorrectas!');
+          setMessage('Credenciales incorrectas');
+        }
       } else {
         console.log('¡Credenciales incorrectas!');
         setMessage('Credenciales incorrectas');
