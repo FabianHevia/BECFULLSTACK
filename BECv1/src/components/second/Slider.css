@@ -11,10 +11,10 @@
     display: none; /* Oculta la barra de desplazamiento en navegadores basados en WebKit (Chrome, Safari) */
   }
   
-.carousel-control-prev {
+.control-prev {
   margin-left: -40px; /* Ajusta el margen superior de los botones */
 }
 
-.carousel-control-next {
+.control-next {
   margin-right: -40px; /* Ajusta el margen superior de los botones */
 }

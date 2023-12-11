@@ -179,7 +179,7 @@ const Home: React.FC = () => {
     <div>
       <MyCarousel />
       <br />
-      <div>
+      <div >
       <div className="container mt-5 rounded-5 fondo-home-2 border border-black" style={{ maxWidth:'50%'}}>
         <h1 className="d-flex justify-content-center mx-auto noticiasTitle">Noticias</h1>
         <Noticias noticias={noticias} />
