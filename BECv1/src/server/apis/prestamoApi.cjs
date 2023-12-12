@@ -16,14 +16,14 @@ router.get('/api/prestamos', async (req, res) => {
 router.post('/api/prestamos', async (req, res) => {
   console.log('Cuerpo de la solicitud:', req.body);
 
-  const { id, usuario, fecha, hora } = req.body;
+  const { id, usuario, fecha, plazo } = req.body;
 
   try {
     const nuevoPrestamo = new Prestamo({
       id,
       usuario,
       fecha,
-      hora,
+      plazo,
     });
 
     const prestamoGuardado = await nuevoPrestamo.save();

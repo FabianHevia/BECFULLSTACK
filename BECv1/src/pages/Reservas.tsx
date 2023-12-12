@@ -45,11 +45,40 @@ const Reservas: React.FC = () => {
         });
         
         console.log('Reserva exitosa:', idCompra);
+        alert('Reserva exitosa');
       } catch (error) {
         console.error('Error al hacer la reserva:', error);
       }
     } else {
       console.log('Selecciona una fecha antes de reservar.');
+      alert('Selecciona una fecha antes de reservar.');
+    };
+  };
+
+  const handlePrestamoClick = async () => {
+    let fecha = '2023-12-11T22:09:35.248+00:00';
+    let plazo = '2023-12-11T22:09:35.248+00:00';
+    let usuario = 'usuario';
+    let id = generarCodigoAleatorio();
+
+    console.log('id:', id);
+    console.log('usuario:', usuario);
+    console.log('fecha:', fecha);
+    console.log('plazo:', plazo);
+
+    try {
+      await axios.post('http://localhost:3000/api/prestamos', {
+        id: id,
+        usuario: usuario,
+        fecha: fecha,
+        plazo: plazo,
+      });
+      
+      console.log('Se Solicito el prestamo, id:', id);
+      alert('Se solicito el prestamo correctamente');
+      console.log('Pronto le llegara nuestra respuesta')
+    } catch (error) {
+      console.error('Error al hacer la reserva:', error);
     }
   };
 
@@ -60,7 +89,6 @@ const Reservas: React.FC = () => {
   const handleDateChange = (date: Date | null) => {
     setSelectedDate(date);
   };
-  
 
   const renderElementosSegunOpcion = () => {
     if (opcionSeleccionada === 'Reserva') {
@@ -94,6 +122,7 @@ const Reservas: React.FC = () => {
             className="btn btn-primary btn-lg btn-block rounded-3 mx-auto"
             type="submit"
             style={{ minWidth: '80%', color: 'white', backgroundColor: '#57412E' }}
+            onClick={handlePrestamoClick}
             >
             Solicitar Prestamo
           </button>
