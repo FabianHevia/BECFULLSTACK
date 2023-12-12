@@ -56,8 +56,8 @@ const Reservas: React.FC = () => {
   };
 
   const handlePrestamoClick = async () => {
-    let fecha = '2023-12-11T22:09:35.248+00:00';
-    let plazo = '2023-12-11T22:09:35.248+00:00';
+    let fecha = '2023-12-12T22:09:35.248+00:00';
+    let plazo = '2023-12-26T22:09:35.248+00:00';
     let usuario = 'usuario';
     let id = generarCodigoAleatorio();
 
